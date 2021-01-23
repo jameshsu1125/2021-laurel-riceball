@@ -1,0 +1,70 @@
+#home {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	.container {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+
+		.balloon {
+			@img: './img/balloon.png';
+			position: absolute;
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			margin-top: 0 - image-height(@img) * 0.5 - 200px;
+			margin-left: 0 - image-width(@img) * 0.5 - 50px;
+		}
+
+		.txt {
+			@img: './img/t.png';
+			width: image-width(@img);
+			height: image-height(@img);
+			position: absolute;
+			margin-left: 0 - image-width(@img) * 0.5;
+			margin-top: 0 - image-height(@img) * 0.5 + 330px;
+
+			& > div {
+				position: absolute;
+			}
+
+			& > div:nth-child(1) {
+				@img: './img/t0.png';
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img);
+				left: 71px;
+			}
+
+			& > div:nth-child(2) {
+				@img: './img/t1.png';
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img);
+				left: 5px;
+				top: 70px;
+			}
+
+			& > div:nth-child(3) {
+				@img: './img/t2.png';
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img);
+				left: 5px;
+				top: 146px;
+			}
+		}
+
+		.home-btn {
+			position: absolute;
+			@img: './img/b.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			margin-left: 0 - image-width(@img) * 0.5;
+			margin-top: 0 - image-height(@img) * 0.5 + 510px;
+		}
+	}
+}

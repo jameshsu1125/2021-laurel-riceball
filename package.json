@@ -57,6 +57,7 @@
 		"jquery": "^3.5.0",
 		"jquery-easing": "0.0.1",
 		"jquery.waitforimages": "^2.4.0",
+		"lesca-click": "^1.0.1",
 		"mouse-wheel": "^1.2.0",
 		"react": "^16.6.3",
 		"react-animate-on-scroll": "^2.1.5",
