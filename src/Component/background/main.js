@@ -21,11 +21,6 @@ export default class main extends React.Component {
 	}
 
 	render() {
-		return (
-			<div id='background'>
-				<div></div>
-				<div></div>
-			</div>
-		);
+		return <div id='background'></div>;
 	}
 }

@@ -6,4 +6,11 @@
 	height: image-height(@img);
 	left: 30px;
 	top: 30px;
+	transform-origin: left top;
+}
+
+@media only screen and (max-height: 1000px) {
+	#logo {
+		transform: scale(0.8);
+	}
 }

@@ -43,7 +43,18 @@ export default class main extends React.Component {
 		return (
 			<div ref='main' id='home'>
 				<div className='container'>
-					<div className='balloon'></div>
+					<div className='halo'>
+						<div></div>
+						<div></div>
+					</div>
+					<div className='balloon'>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
 					<div className='txt'>
 						<div></div>
 						<div></div>

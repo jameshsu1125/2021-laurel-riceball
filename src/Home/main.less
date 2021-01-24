@@ -8,14 +8,94 @@
 		left: 50%;
 		top: 50%;
 
+		.halo {
+			position: relative;
+			& > div {
+				position: absolute;
+				@img: './img/halo.png';
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img);
+			}
+
+			& > div:nth-child(1) {
+				left: -60vw;
+				top: -2vh;
+				transform: scale(0.7);
+			}
+
+			& > div:nth-child(2) {
+				right: -62vw;
+				top: 4vh;
+				transform: scale(0.4);
+			}
+		}
+
 		.balloon {
+			position: relative;
 			@img: './img/balloon.png';
-			position: absolute;
-			background-image: url(@img);
-			width: image-width(@img);
-			height: image-height(@img);
-			margin-top: 0 - image-height(@img) * 0.5 - 200px;
-			margin-left: 0 - image-width(@img) * 0.5 - 50px;
+			@imgs: './img/balloon-s.png';
+			@imgf: './img/balloon-f.png';
+
+			& > div {
+				position: absolute;
+			}
+
+			& > div:nth-child(6) {
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img);
+				margin-left: 0 - image-width(@img) * 0.5 - 50px;
+				margin-top: 0 - image-height(@img) * 0.5 - 200px;
+			}
+
+			& > div:nth-child(5) {
+				background-image: url(@imgs);
+				width: image-width(@imgs);
+				height: image-height(@imgs);
+				margin-left: -360px;
+				margin-top: 80px;
+			}
+
+			& > div:nth-child(4) {
+				background-image: url(@imgs);
+				width: image-width(@imgs);
+				height: image-height(@imgs);
+				margin-left: 156px;
+				margin-top: 130px;
+				transform: scale(-0.6, 0.6);
+				opacity: 0.5;
+			}
+
+			& > div:nth-child(3) {
+				background-image: url(@imgf);
+				width: image-width(@imgf);
+				height: image-height(@imgf);
+				margin-left: 126px;
+				margin-top: -650px;
+				transform: scale(0.69) rotate(-3deg);
+				opacity: 1;
+			}
+
+			& > div:nth-child(2) {
+				background-image: url(@imgf);
+				width: image-width(@imgf);
+				height: image-height(@imgf);
+				margin-left: -316px;
+				margin-top: -189px;
+				transform: scale(0.6) rotate(-33deg);
+				opacity: 0.7;
+			}
+
+			& > div:nth-child(1) {
+				background-image: url(@imgf);
+				width: image-width(@imgf);
+				height: image-height(@imgf);
+				margin-left: 254px;
+				margin-top: -289px;
+				transform: scale(0.5) rotate(-4deg);
+				opacity: 0.7;
+			}
 		}
 
 		.txt {
@@ -65,6 +145,13 @@
 			height: image-height(@img);
 			margin-left: 0 - image-width(@img) * 0.5;
 			margin-top: 0 - image-height(@img) * 0.5 + 510px;
+
+			cursor: pointer;
+			transition: 0.2s;
+
+			&:hover {
+				transform: scale(1.05);
+			}
 		}
 	}
 }
