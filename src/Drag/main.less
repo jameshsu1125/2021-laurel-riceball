@@ -1,0 +1,147 @@
+#drag {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	.container {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+
+		.blur {
+			position: absolute;
+			width: 200vw;
+			height: 200vh;
+			margin-left: -100vw;
+			margin-top: -100vh;
+			background: radial-gradient(circle, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.5) 50%);
+		}
+
+		@keyframes ro {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		.line {
+			@border: 4px;
+			position: absolute;
+			width: 750px - (@border * 2);
+			height: 750px - (@border * 2);
+			border-radius: 50%;
+			border: dashed @border rgba(100, 100, 100, 0.5);
+			margin-left: -750px/2;
+			margin-top: -750px/2;
+
+			animation: ro 50s linear infinite;
+			pointer-events: none;
+			opacity: 0;
+		}
+
+		canvas {
+			//background-color: red;
+			position: absolute;
+			margin-left: -750px/2;
+			margin-top: -750px/2;
+		}
+
+		.title {
+			position: absolute;
+			@img: './img/t.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			left: 305px;
+			margin-top: 0 - image-height(@img) * 0.5;
+		}
+
+		.btn-submit {
+			position: absolute;
+			@img: './img/btn-submit.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			left: 50%;
+			margin-left: 0 - image-width(@img) * 0.5 + 170px;
+			margin-top: 500px;
+
+			cursor: pointer;
+			filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.4));
+			&:hover {
+				margin-left: 0 - image-width(@img) * 0.5 + 170px + 4px;
+				margin-top: 500px + 4px;
+				filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
+			}
+		}
+
+		.btn-reset {
+			position: absolute;
+			@img: './img/btn-reset.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			left: 50%;
+			margin-left: 0 - image-width(@img) * 0.5 - 170px;
+			margin-top: 500px;
+
+			cursor: pointer;
+			filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.4));
+			&:hover {
+				margin-left: 0 - image-width(@img) * 0.5 - 170px + 4px;
+				margin-top: 500px + 4px;
+				filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
+			}
+		}
+
+		.riceball {
+			position: absolute;
+			margin-top: -280px;
+
+			transform: scale(3);
+			top: 190px;
+		}
+
+		.type-1 {
+			@img: './../Select/img/riceball-1.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			margin-left: 0 - image-width(@img) * 0.5;
+		}
+
+		.type-2 {
+			@img: './../Select/img/riceball-2.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			margin-left: 0 - image-width(@img) * 0.5;
+		}
+
+		.type-3 {
+			@img: './../Select/img/riceball-3.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			margin-left: 0 - image-width(@img) * 0.5;
+		}
+
+		.type-4 {
+			@img: './../Select/img/riceball-4.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			margin-left: 0 - image-width(@img) * 0.5;
+		}
+
+		.type-5 {
+			@img: './../Select/img/riceball-5.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			margin-left: 0 - image-width(@img) * 0.5;
+		}
+	}
+}

@@ -2,6 +2,7 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
+	display: none;
 
 	.container {
 		position: absolute;
@@ -19,34 +20,47 @@
 			}
 
 			& > div:nth-child(1) {
-				left: -60vw;
-				top: -2vh;
+				margin-left: -70vw;
+				margin-top: -2vh;
 				transform: scale(0.7);
 			}
 
 			& > div:nth-child(2) {
-				right: -62vw;
-				top: 4vh;
+				margin-left: 3vw;
+				margin-top: 4vh;
 				transform: scale(0.4);
+			}
+		}
+
+		.main_balloon {
+			position: absolute;
+			@img: './img/balloon.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			margin-left: 0 - image-width(@img) * 0.5 - 50px;
+			margin-top: 0 - image-height(@img) * 0.5 - 200px;
+			transform-origin: 276px 284px;
+
+			.puipui {
+				position: absolute;
+				@img: './img/puipui.png';
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img);
+				left: 366px;
+				top: -38px;
 			}
 		}
 
 		.balloon {
 			position: relative;
-			@img: './img/balloon.png';
+
 			@imgs: './img/balloon-s.png';
 			@imgf: './img/balloon-f.png';
 
 			& > div {
 				position: absolute;
-			}
-
-			& > div:nth-child(6) {
-				background-image: url(@img);
-				width: image-width(@img);
-				height: image-height(@img);
-				margin-left: 0 - image-width(@img) * 0.5 - 50px;
-				margin-top: 0 - image-height(@img) * 0.5 - 200px;
 			}
 
 			& > div:nth-child(5) {
@@ -71,9 +85,9 @@
 				background-image: url(@imgf);
 				width: image-width(@imgf);
 				height: image-height(@imgf);
-				margin-left: 126px;
-				margin-top: -650px;
-				transform: scale(0.69) rotate(-3deg);
+				margin-left: 216px;
+				margin-top: -380px;
+				transform: scale(0.69) rotate(27deg);
 				opacity: 1;
 			}
 
@@ -91,9 +105,9 @@
 				background-image: url(@imgf);
 				width: image-width(@imgf);
 				height: image-height(@imgf);
-				margin-left: 254px;
-				margin-top: -289px;
-				transform: scale(0.5) rotate(-4deg);
+				margin-left: -186px;
+				margin-top: -719px;
+				transform: scale(0.5) rotate(-14deg);
 				opacity: 0.7;
 			}
 		}
@@ -115,7 +129,7 @@
 				background-image: url(@img);
 				width: image-width(@img);
 				height: image-height(@img);
-				left: 71px;
+				margin-left: 71px;
 			}
 
 			& > div:nth-child(2) {
@@ -123,8 +137,8 @@
 				background-image: url(@img);
 				width: image-width(@img);
 				height: image-height(@img);
-				left: 5px;
-				top: 70px;
+				margin-left: 5px;
+				margin-top: 70px;
 			}
 
 			& > div:nth-child(3) {
@@ -132,8 +146,8 @@
 				background-image: url(@img);
 				width: image-width(@img);
 				height: image-height(@img);
-				left: 5px;
-				top: 146px;
+				margin-left: 5px;
+				margin-top: 146px;
 			}
 		}
 
@@ -147,10 +161,13 @@
 			margin-top: 0 - image-height(@img) * 0.5 + 510px;
 
 			cursor: pointer;
-			transition: 0.2s;
+			transition: 0.1s;
+			filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.4));
 
 			&:hover {
-				transform: scale(1.05);
+				margin-left: 0 - image-width(@img) * 0.5 + 4;
+				margin-top: 0 - image-height(@img) * 0.5 + 510px + 4;
+				filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.2));
 			}
 		}
 	}

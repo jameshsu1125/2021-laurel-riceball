@@ -4,13 +4,18 @@ import './main.less';
 import Background from '../Component/background/main';
 import Logo from '../Component/logo/main';
 import Fiftieth from '../Component/fiftieth/main';
+import Back from '../Component/back/main';
 
 import Home from './../Home/main';
 import Select from './../Select/main';
+import Drag from './../Drag/main';
 
 import Click from 'lesca-click';
+import Loading from 'lesca-react-loading';
+
 import $ from 'jquery';
 require('jquery-easing');
+require('jquery.waitforimages');
 
 export default class index extends React.Component {
 	constructor(props) {
@@ -18,13 +23,24 @@ export default class index extends React.Component {
 
 		const root = this;
 
-		this.state = { home: false, select: true };
+		this.state = { loading: true, home: true, select: true, drag: true };
+
+		this.drag_index = 1;
 
 		Click.init();
 
 		this.tr = {
 			init() {
 				this.ctx.init();
+			},
+			in() {
+				let c = 'drag';
+				let o = { ...root.state };
+				delete o[c];
+				for (let i in o) o[i] = false;
+				root.setState(o, () => {
+					root.refs[c].in();
+				});
 			},
 			ctx: {
 				s: 1,
@@ -56,33 +72,72 @@ export default class index extends React.Component {
 
 	componentDidMount() {
 		this.tr.init();
-		//script
+		$(this.refs.main).waitForImages({
+			finished: () => this.tr.in(),
+			waitForAll: true,
+		});
 	}
 
-	componentDidUpdate() {
-		//script
-	}
-
-	componentWillUnmount() {
-		//script
+	home_next() {
+		this.setState({ home: false, select: true }, () => {
+			this.refs.select.in();
+		});
 	}
 
 	append_home() {
-		if (this.state.home) return <Home />;
+		if (this.state.home) return <Home ref='home' next={this.home_next.bind(this)} upup={this.bg_upup.bind(this)} />;
+	}
+
+	select_destory() {
+		this.setState({ select: false });
+	}
+
+	bg_upup() {
+		this.refs.bg.upup();
+	}
+
+	select_next(e) {
+		this.drag_index = e;
+		this.setState({ select: false, drag: true }, () => {
+			console.log('aa');
+		});
 	}
 
 	append_select() {
-		if (this.state.select) return <Select />;
+		if (this.state.select) return <Select ref='select' destory={this.select_destory.bind(this)} next={this.select_next.bind(this)} />;
+	}
+
+	back_prev() {
+		this.refs.bg.up();
+		this.refs.select.back();
+		this.setState({ home: true }, () => {
+			this.refs.home.in();
+		});
+	}
+
+	append_back() {
+		if (this.state.select) return <Back back={this.back_prev.bind(this)} />;
+	}
+
+	append_loading() {
+		if (this.state.loading) return <Loading />;
+	}
+
+	append_drag() {
+		if (this.state.drag) return <Drag ref='drag' index={this.drag_index} />;
 	}
 
 	render() {
 		return (
-			<div id='index'>
-				<Background />
+			<div ref='main' id='index'>
+				<Background ref='bg' />
 				<div ref='ctx' className='ctx'>
 					{this.append_home()}
 					{this.append_select()}
+					{this.append_drag()}
 				</div>
+				{this.append_back()}
+				{this.append_loading()}
 				<Logo />
 				<Fiftieth />
 			</div>

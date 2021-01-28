@@ -1,0 +1,23 @@
+#demo {
+	position: relative;
+
+	.txt {
+		position: absolute;
+		@img: './img/demo.png';
+		background-image: url(@img);
+		width: image-width(@img);
+		height: image-height(@img);
+		margin-left: 0 - image-width(@img) * 0.5;
+		margin-top: 0 - image-height(@img) * 0.5;
+	}
+
+	.hand {
+		position: absolute;
+		@img: './img/hand.png';
+		background-image: url(@img);
+		width: image-width(@img);
+		height: image-height(@img);
+		margin-left: 220px;
+		margin-top: 130px;
+	}
+}
