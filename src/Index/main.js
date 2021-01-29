@@ -26,6 +26,7 @@ export default class index extends React.Component {
 		this.state = { loading: true, home: true, select: true, drag: true };
 
 		this.drag_index = 1;
+		this.img = location.hostname === 'localhost' ? require('./fakeimage').img : '';
 
 		Click.init();
 
@@ -34,7 +35,7 @@ export default class index extends React.Component {
 				this.ctx.init();
 			},
 			in() {
-				let c = 'drag';
+				let c = location.hostname === 'localhost' ? 'drag' : 'home';
 				let o = { ...root.state };
 				delete o[c];
 				for (let i in o) o[i] = false;
@@ -98,8 +99,13 @@ export default class index extends React.Component {
 
 	select_next(e) {
 		this.drag_index = e;
-		this.setState({ select: false, drag: true }, () => {
-			console.log('aa');
+		this.setState({ drag: true }, () => {
+			this.refs.drag.in();
+			this.refs.bg.down();
+
+			// setTimeout(() => {
+			// 	this.setState({ select: false });
+			// }, 1);
 		});
 	}
 
@@ -123,8 +129,16 @@ export default class index extends React.Component {
 		if (this.state.loading) return <Loading />;
 	}
 
+	drag_capture(e) {
+		this.img = e;
+	}
+
+	drag_end() {
+		this.setState({ drag: false });
+	}
+
 	append_drag() {
-		if (this.state.drag) return <Drag ref='drag' index={this.drag_index} />;
+		if (this.state.drag) return <Drag ref='drag' index={this.drag_index} capture={this.drag_capture.bind(this)} end={this.drag_end.bind(this)} />;
 	}
 
 	render() {

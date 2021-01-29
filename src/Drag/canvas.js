@@ -28,36 +28,46 @@ export default class canvas extends React.Component {
 					this.line.show();
 				};
 
-				Click.ex_up = (e) => {
+				Click.ex_up = () => {
 					this.line.hide();
 				};
 
 				this.move = (e) => {
 					if (!this.is) return;
 					if (Click.is_press && px != 0 && py != 0) {
-						px = e.offsetX || e.targetTouches[0].clientX;
-						py = e.offsetY || e.targetTouches[0].clientY;
-						let oy = 0;
-						if (e.targetTouches) oy = (window.innerHeight - 750) / 2;
-						this.canvas.move(px, py - oy);
+						try {
+							px = e.offsetX || e.targetTouches[0].clientX;
+							py = e.offsetY || e.targetTouches[0].clientY;
+							let oy = 0;
+							if (e.targetTouches) oy = (window.innerHeight - 750) / 2;
+							this.canvas.move(px, py - oy);
+						} catch {}
 					}
 				};
 
 				root.refs.canvas.addEventListener('touchmove', (e) => this.move(e));
 				root.refs.canvas.addEventListener('mousemove', (e) => this.move(e));
 			},
+			destory() {
+				root.refs.canvas.removeEventListener('touchmove', (e) => this.move(e));
+				root.refs.canvas.removeEventListener('mousemove', (e) => this.move(e));
+				Click.ex_down = () => {};
+				Click.ex_up = () => {};
+			},
 			line: {
 				o: 0,
-				time: 300,
+				time: 500,
 				init() {
 					this.c = $(root.refs.line);
 					this.tran();
 				},
 				show() {
+					$(this).clearQueue();
+					$(this).stop();
 					$(this).animate(
 						{ o: 1 },
 						{
-							duration: this.time,
+							duration: 200,
 							step: () => this.tran(),
 							complete: () => this.tran(),
 							easing: 'easeOutQuart',
@@ -65,15 +75,19 @@ export default class canvas extends React.Component {
 					);
 				},
 				hide() {
-					$(this).animate(
-						{ o: 0 },
-						{
-							duration: this.time,
-							step: () => this.tran(),
-							complete: () => this.tran(),
-							easing: 'easeOutQuart',
-						}
-					);
+					$(this).clearQueue();
+					$(this).stop();
+					$(this)
+						.delay(300)
+						.animate(
+							{ o: 0 },
+							{
+								duration: this.time,
+								step: () => this.tran(),
+								complete: () => this.tran(),
+								easing: 'easeOutQuart',
+							}
+						);
 				},
 				tran() {
 					this.c.css({
@@ -98,13 +112,15 @@ export default class canvas extends React.Component {
 				clear: function () {
 					this.ctx.clearRect(0, 0, this.dom.width, this.dom.height);
 				},
-				catch: function () {
-					this.img = this.dom.toDataURL('image/png', 1.0);
-					root.tr.out();
-					root.props.Event.clear();
+				capture: function () {
+					return this.dom.toDataURL('image/png', 1.0);
 				},
 			},
 		};
+	}
+
+	capture() {
+		return this.tr.canvas.capture();
 	}
 
 	reset() {
@@ -113,6 +129,10 @@ export default class canvas extends React.Component {
 
 	componentDidMount() {
 		this.tr.init();
+	}
+
+	componentWillUnmount() {
+		this.tr.destory();
 	}
 
 	start() {

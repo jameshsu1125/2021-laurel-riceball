@@ -290,6 +290,7 @@ export default class main extends React.Component {
 
 	selected(e) {
 		this.props.next(e);
+		this.tr.back();
 	}
 
 	append_page() {

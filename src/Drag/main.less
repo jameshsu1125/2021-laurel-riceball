@@ -2,6 +2,7 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
+	display: none;
 
 	.container {
 		position: absolute;
@@ -14,7 +15,7 @@
 			height: 200vh;
 			margin-left: -100vw;
 			margin-top: -100vh;
-			background: radial-gradient(circle, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.5) 50%);
+			background: radial-gradient(circle, rgba(0, 0, 0, 0) 30%, rgba(112, 48, 48, 0.9) 50%);
 		}
 
 		@keyframes ro {
@@ -32,7 +33,7 @@
 			width: 750px - (@border * 2);
 			height: 750px - (@border * 2);
 			border-radius: 50%;
-			border: dashed @border rgba(100, 100, 100, 0.5);
+			border: dashed @border rgba(112, 48, 48, 0.6);
 			margin-left: -750px/2;
 			margin-top: -750px/2;
 
@@ -56,6 +57,7 @@
 			height: image-height(@img);
 			left: 305px;
 			margin-top: 0 - image-height(@img) * 0.5;
+			pointer-events: none;
 		}
 
 		.btn-submit {
