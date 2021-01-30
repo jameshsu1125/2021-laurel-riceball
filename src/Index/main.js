@@ -9,9 +9,11 @@ import Back from '../Component/back/main';
 import Home from './../Home/main';
 import Select from './../Select/main';
 import Drag from './../Drag/main';
+import Result from './../Result/main';
 
 import Click from 'lesca-click';
 import Loading from 'lesca-react-loading';
+import FB from 'lesca-facebook-share';
 
 import $ from 'jquery';
 require('jquery-easing');
@@ -22,8 +24,9 @@ export default class index extends React.Component {
 		super(props);
 
 		const root = this;
+		FB.install('171368189560011', {});
 
-		this.state = { loading: true, home: true, select: true, drag: true };
+		this.state = { loading: true, home: true, select: true, drag: true, result: true };
 
 		this.drag_index = 1;
 		this.img = location.hostname === 'localhost' ? require('./fakeimage').img : '';
@@ -35,7 +38,7 @@ export default class index extends React.Component {
 				this.ctx.init();
 			},
 			in() {
-				let c = location.hostname === 'localhost' ? 'drag' : 'home';
+				let c = location.hostname === 'localhost' ? 'result' : 'home';
 				let o = { ...root.state };
 				delete o[c];
 				for (let i in o) o[i] = false;
@@ -102,10 +105,6 @@ export default class index extends React.Component {
 		this.setState({ drag: true }, () => {
 			this.refs.drag.in();
 			this.refs.bg.down();
-
-			// setTimeout(() => {
-			// 	this.setState({ select: false });
-			// }, 1);
 		});
 	}
 
@@ -131,6 +130,9 @@ export default class index extends React.Component {
 
 	drag_capture(e) {
 		this.img = e;
+		this.setState({ result: true }, () => {
+			this.refs.result.in();
+		});
 	}
 
 	drag_end() {
@@ -141,6 +143,10 @@ export default class index extends React.Component {
 		if (this.state.drag) return <Drag ref='drag' index={this.drag_index} capture={this.drag_capture.bind(this)} end={this.drag_end.bind(this)} />;
 	}
 
+	append_result() {
+		if (this.state.result) return <Result ref='result' image={this.img} FB={FB} />;
+	}
+
 	render() {
 		return (
 			<div ref='main' id='index'>
@@ -149,6 +155,7 @@ export default class index extends React.Component {
 					{this.append_home()}
 					{this.append_select()}
 					{this.append_drag()}
+					{this.append_result()}
 				</div>
 				{this.append_back()}
 				{this.append_loading()}
