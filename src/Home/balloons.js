@@ -11,16 +11,24 @@ export default class balloons extends React.Component {
 				this.balloons.init();
 				return this;
 			},
-			in() {},
+			in() {
+				this.balloons.in();
+			},
 			balloons: {
+				targets: [],
 				init() {
 					this.c = $(root.refs.balloons);
 					this.tran();
 				},
+				in() {
+					for (let i = 0; i < this.targets.length; i++) {
+						this.targets[i].play();
+					}
+				},
 				tran() {
 					let self = this;
 					this.c.children('div').each(function (i) {
-						new self.swing($(this), i);
+						self.targets.push(new self.swing($(this), i));
 					});
 				},
 				swing: function (tar, index) {
@@ -48,20 +56,22 @@ export default class balloons extends React.Component {
 						});
 					};
 					this.tran();
-					$(this.p)
-						.delay(this.delay)
-						.animate(
-							{ o: 1, y: 0 },
-							{
-								duration: this.time,
-								step: () => this.tran(),
-								complete: () => {
-									this.tran();
-									this.swing();
-								},
-								easing: 'easeOutQuart',
-							}
-						);
+					this.play = () => {
+						$(this.p)
+							.delay(this.delay)
+							.animate(
+								{ o: 1, y: 0 },
+								{
+									duration: this.time,
+									step: () => this.tran(),
+									complete: () => {
+										this.tran();
+										this.swing();
+									},
+									easing: 'easeOutQuart',
+								}
+							);
+					};
 				},
 			},
 		};
@@ -78,7 +88,6 @@ export default class balloons extends React.Component {
 	render() {
 		return (
 			<div ref='balloons' className='balloon'>
-				<div></div>
 				<div></div>
 				<div></div>
 				<div></div>

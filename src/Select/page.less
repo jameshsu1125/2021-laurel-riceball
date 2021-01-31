@@ -37,6 +37,16 @@
 							width: image-width(@img);
 							height: image-height(@img);
 							margin-left: 0 - image-width(@img) * 0.5;
+
+							.puipui {
+								position: absolute;
+								@img: './img/puipui-5.png';
+								background-image: url(@img);
+								width: image-width(@img);
+								height: image-height(@img);
+								margin-left: 480px;
+								margin-top: 49px;
+							}
 						}
 					}
 				}
@@ -70,6 +80,16 @@
 							width: image-width(@img);
 							height: image-height(@img);
 							margin-left: 0 - image-width(@img) * 0.5;
+
+							.puipui {
+								position: absolute;
+								@img: './img/puipui-1.png';
+								background-image: url(@img);
+								width: image-width(@img);
+								height: image-height(@img);
+								margin-left: 480px;
+								margin-top: 47px;
+							}
 						}
 					}
 				}
@@ -103,6 +123,16 @@
 							width: image-width(@img);
 							height: image-height(@img);
 							margin-left: 0 - image-width(@img) * 0.5;
+
+							.puipui {
+								position: absolute;
+								@img: './img/puipui-2.png';
+								background-image: url(@img);
+								width: image-width(@img);
+								height: image-height(@img);
+								margin-left: 465px;
+								margin-top: 46px;
+							}
 						}
 					}
 				}
@@ -136,6 +166,16 @@
 							width: image-width(@img);
 							height: image-height(@img);
 							margin-left: 0 - image-width(@img) * 0.5;
+
+							.puipui {
+								position: absolute;
+								@img: './img/puipui-3.png';
+								background-image: url(@img);
+								width: image-width(@img);
+								height: image-height(@img);
+								margin-left: 456px;
+								margin-top: 55px;
+							}
 						}
 					}
 				}
@@ -169,6 +209,16 @@
 							width: image-width(@img);
 							height: image-height(@img);
 							margin-left: 0 - image-width(@img) * 0.5;
+
+							.puipui {
+								position: absolute;
+								@img: './img/puipui-4.png';
+								background-image: url(@img);
+								width: image-width(@img);
+								height: image-height(@img);
+								margin-left: 476px;
+								margin-top: 55px;
+							}
 						}
 					}
 				}
@@ -202,6 +252,16 @@
 							width: image-width(@img);
 							height: image-height(@img);
 							margin-left: 0 - image-width(@img) * 0.5;
+
+							.puipui {
+								position: absolute;
+								@img: './img/puipui-5.png';
+								background-image: url(@img);
+								width: image-width(@img);
+								height: image-height(@img);
+								margin-left: 480px;
+								margin-top: 49px;
+							}
 						}
 					}
 				}
@@ -235,6 +295,16 @@
 							width: image-width(@img);
 							height: image-height(@img);
 							margin-left: 0 - image-width(@img) * 0.5;
+
+							.puipui {
+								position: absolute;
+								@img: './img/puipui-1.png';
+								background-image: url(@img);
+								width: image-width(@img);
+								height: image-height(@img);
+								margin-left: 480px;
+								margin-top: 47px;
+							}
 						}
 					}
 				}
@@ -290,8 +360,25 @@
 						}
 					}
 
+					@keyframes walking {
+						from {
+							left: 0;
+							top: 0;
+							//transform: rotate(2deg);
+						}
+						to {
+							left: 4px;
+							top: -5px;
+							//transform: rotate(-2deg);
+						}
+					}
+
 					.riceball {
-						margin-top: -280px;
+						margin-top: -240px;
+
+						.puipui {
+							animation: walking 0.2s steps(2) infinite;
+						}
 					}
 				}
 			}

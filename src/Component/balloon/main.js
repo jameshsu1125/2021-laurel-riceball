@@ -1,33 +1,40 @@
 import React from 'react';
+import './main.less';
 
 import $ from 'jquery';
 require('jquery-easing');
+
+import Hash from 'lesca-url-parameters';
 
 export default class balloon extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { txt: '' };
+
 		const root = this;
 		this.tr = {
 			init() {
 				this.balloon.init();
+				const { show_puipui } = require('./../../_config');
+				if (!show_puipui) root.refs.puipui.style.display = 'none';
 				return this;
 			},
 			in() {
 				this.balloon.in();
 			},
 			balloon: {
-				x: 20,
+				x: 10,
 				y: 500,
 				r: 5,
-				s: 1,
-				o: 0,
+				s: Hash.file() === 'success.html' ? 1.15 : 1,
+				o: 1,
 				delay: 0,
 				deg: 0,
 				time: 4000,
-				radius: 20,
+				radius: 10,
 				init() {
 					this.c = $(root.refs.balloon);
+					if (Hash.file() === 'success.html') this.c.css('margin-top', '-428px');
 					this.tran();
 				},
 				in() {
@@ -89,11 +96,17 @@ export default class balloon extends React.Component {
 		return this.state.txt;
 	}
 
+	visible_puipui(e) {
+		if (e) this.refs.puipui.style.display = 'block';
+		else this.refs.puipui.style.display = 'none';
+	}
+
 	render() {
 		return (
-			<div ref='balloon' className='main_balloon'>
-				<div className='draw' style={{ backgroundImage: `url(${this.props.image})` }}></div>
-				<div className='puipui'></div>
+			<div ref='balloon' id='main_balloon'>
+				<div className={'ball b' + this.props.index}></div>
+				<div className='draw' style={{ backgroundImage: `url(${this.props.image || require('./../../Index/fakeimage').img})` }}></div>
+				<div ref='puipui' className={'puipui p' + this.props.index}></div>
 				<div className='txt'>{this.append_txt()}</div>
 			</div>
 		);

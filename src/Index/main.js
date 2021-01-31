@@ -38,7 +38,7 @@ export default class index extends React.Component {
 				this.ctx.init();
 			},
 			in() {
-				let c = location.hostname === 'localhost' ? 'result' : 'home';
+				let c = location.hostname === 'localhost' ? require('./../_config').begin_component : 'home';
 				let o = { ...root.state };
 				delete o[c];
 				for (let i in o) o[i] = false;
@@ -131,7 +131,7 @@ export default class index extends React.Component {
 	drag_capture(e) {
 		this.img = e;
 		this.setState({ result: true }, () => {
-			this.refs.result.in();
+			setTimeout(() => this.refs.result.in(), 1000);
 		});
 	}
 
@@ -144,7 +144,7 @@ export default class index extends React.Component {
 	}
 
 	append_result() {
-		if (this.state.result) return <Result ref='result' image={this.img} FB={FB} />;
+		if (this.state.result) return <Result ref='result' image={this.img} FB={FB} index={this.drag_index} />;
 	}
 
 	render() {

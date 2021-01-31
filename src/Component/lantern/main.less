@@ -1,0 +1,59 @@
+#lantern {
+	position: relative;
+
+	@imgs: './../../Home/img/balloon-s.png';
+	@imgf: './../../Home/img/balloon-f.png';
+
+	& > div {
+		position: absolute;
+	}
+
+	& > div:nth-child(5) {
+		background-image: url(@imgs);
+		width: image-width(@imgs);
+		height: image-height(@imgs);
+		margin-left: -390px;
+		margin-top: 190px;
+	}
+
+	& > div:nth-child(4) {
+		background-image: url(@imgs);
+		width: image-width(@imgs);
+		height: image-height(@imgs);
+		margin-left: 116px;
+		margin-top: 280px;
+		transform: scale(-0.8, 0.8);
+		opacity: 0.53;
+	}
+
+	& > div:nth-child(3) {
+		background-image: url(@imgf);
+		width: image-width(@imgf);
+		height: image-height(@imgf);
+		margin-left: 226px;
+		margin-top: 115px;
+		transform: scale(0.68) rotate(12deg);
+		opacity: 1;
+	}
+
+	& > div:nth-child(2) {
+		background-image: url(@imgf);
+		width: image-width(@imgf);
+		height: image-height(@imgf);
+		margin-left: -336px;
+		margin-top: -79px;
+
+		transform: scale(0.6) rotate(-33deg);
+		opacity: 0.75;
+	}
+
+	& > div:nth-child(1) {
+		background-image: url(@imgf);
+		width: image-width(@imgf);
+		height: image-height(@imgf);
+		margin-left: 214px;
+		margin-top: -509px;
+		transform: scale(0.8) rotate(-8deg);
+		opacity: 0.7;
+	}
+}

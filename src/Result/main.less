@@ -9,29 +9,6 @@
 		left: 50%;
 		top: 50%;
 
-		.halo {
-			position: relative;
-			& > div {
-				position: absolute;
-				@img: './img/halo.png';
-				background-image: url(@img);
-				width: image-width(@img);
-				height: image-height(@img);
-			}
-
-			& > div:nth-child(1) {
-				margin-left: -70vw;
-				margin-top: -2vh;
-				transform: scale(0.7);
-			}
-
-			& > div:nth-child(2) {
-				margin-left: 13vw;
-				margin-top: 14vh;
-				transform: scale(0.4);
-			}
-		}
-
 		.btn-share {
 			position: absolute;
 			@img: './img/btn-share.png';
@@ -76,7 +53,7 @@
 			background-image: url(@img);
 			width: image-width(@img);
 			height: image-height(@img);
-			left: 170px;
+			left: 200px;
 			top: -290px;
 			transform-origin: 0px 51px;
 		}
@@ -115,113 +92,6 @@
 
 					font-size: 50px;
 				}
-			}
-		}
-
-		.main_balloon {
-			position: absolute;
-			@img: './img/balloon.png';
-			background-image: url(@img);
-			width: image-width(@img);
-			height: image-height(@img);
-			margin-left: 0 - image-width(@img) * 0.5 - 50px;
-			margin-top: 0 - image-height(@img) * 0.5 + 30px;
-			transform-origin: 276px 284px;
-
-			.txt {
-				position: absolute;
-				width: 130px;
-				height: 120px;
-				//background-color: rgba(0, 0, 0, 0.5);
-				margin-left: 281px;
-				margin-top: 552px;
-				text-align: center;
-				font-size: 26px;
-				line-height: 120px;
-				transform: scale(1, 1.2) skewX(-10deg);
-
-				font-family: 'PMingLiU', 'LiSong Pro', 'MingLiU', serif;
-				font-weight: bold;
-			}
-
-			.draw {
-				position: absolute;
-				width: 427px;
-				height: 418px;
-				margin-top: 52px;
-				margin-left: 71px;
-				mask-image: url('./img/mask.png');
-				background-size: 100% 100%;
-			}
-
-			.puipui {
-				position: absolute;
-				@img: './img/puipui.png';
-				background-image: url(@img);
-				width: image-width(@img);
-				height: image-height(@img);
-				left: 313px;
-				top: -47px;
-			}
-		}
-
-		.balloon {
-			position: relative;
-
-			@imgs: './../Home/img/balloon-s.png';
-			@imgf: './../Home/img/balloon-f.png';
-
-			& > div {
-				position: absolute;
-			}
-
-			& > div:nth-child(5) {
-				background-image: url(@imgs);
-				width: image-width(@imgs);
-				height: image-height(@imgs);
-				margin-left: -390px;
-				margin-top: 190px;
-			}
-
-			& > div:nth-child(4) {
-				background-image: url(@imgs);
-				width: image-width(@imgs);
-				height: image-height(@imgs);
-				margin-left: 116px;
-				margin-top: 280px;
-				transform: scale(-0.8, 0.8);
-				opacity: 0.53;
-			}
-
-			& > div:nth-child(3) {
-				background-image: url(@imgf);
-				width: image-width(@imgf);
-				height: image-height(@imgf);
-				margin-left: 226px;
-				margin-top: 115px;
-				transform: scale(0.68) rotate(12deg);
-				opacity: 1;
-			}
-
-			& > div:nth-child(2) {
-				background-image: url(@imgf);
-				width: image-width(@imgf);
-				height: image-height(@imgf);
-				margin-left: -336px;
-				margin-top: -79px;
-
-				transform: scale(0.6) rotate(-33deg);
-				opacity: 0.75;
-			}
-
-			& > div:nth-child(1) {
-				background-image: url(@imgf);
-				width: image-width(@imgf);
-				height: image-height(@imgf);
-				margin-left: 214px;
-				margin-top: -509px;
-				transform: scale(0.8) rotate(-8deg);
-				opacity: 0.7;
 			}
 		}
 	}

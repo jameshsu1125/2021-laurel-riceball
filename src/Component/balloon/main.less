@@ -1,0 +1,123 @@
+#main_balloon {
+	position: absolute;
+	@img: './img/balloon.png';
+	background-image: url(@img);
+	width: image-width(@img);
+	height: image-height(@img);
+	margin-left: 0 - image-width(@img) * 0.5 - 50px;
+	margin-top: 0 - image-height(@img) * 0.5 + 30px;
+	transform-origin: 276px 284px;
+
+	@r: 0.801;
+	@ball: './img/riceball-1.png';
+	.ball {
+		position: absolute;
+		width: image-width(@ball) * @r;
+		height: image-height(@ball) * @r;
+		background-size: 100%;
+		margin-top: -37px;
+		margin-left: -12px;
+	}
+
+	.b1 {
+		@ball: './img/riceball-1.png';
+		background-image: url(@ball);
+	}
+
+	.b2 {
+		@ball: './img/riceball-2.png';
+		background-image: url(@ball);
+	}
+
+	.b2 {
+		@ball: './img/riceball-3.png';
+		background-image: url(@ball);
+	}
+
+	.b4 {
+		@ball: './img/riceball-4.png';
+		background-image: url(@ball);
+	}
+
+	.b5 {
+		@ball: './img/riceball-2.png';
+		background-image: url(@ball);
+	}
+
+	.txt {
+		position: absolute;
+		width: 130px;
+		height: 120px;
+		margin-left: 281px;
+		margin-top: 552px;
+		text-align: center;
+		font-size: 26px;
+		line-height: 120px;
+		transform: scale(1, 1.2) skewX(-10deg);
+
+		font-family: 'PMingLiU', 'LiSong Pro', 'MingLiU', serif;
+		font-weight: bold;
+		cursor: default;
+	}
+
+	.draw {
+		position: absolute;
+		width: 427px;
+		height: 418px;
+		margin-top: 52px;
+		margin-left: 71px;
+		mask-image: url('./img/mask.png');
+		background-size: 100% 100%;
+		//background-color: rgba(255, 0, 0, 0.5);
+	}
+
+	.puipui {
+		position: absolute;
+		animation: walking 0.2s steps(2) infinite;
+	}
+
+	.p1 {
+		@img: './img/puipui-1.png';
+		background-image: url(@img);
+		width: image-width(@img);
+		height: image-height(@img);
+		margin-left: 360px;
+		margin-top: -52px;
+	}
+
+	.p2 {
+		@img: './img/puipui-2.png';
+		background-image: url(@img);
+		width: image-width(@img);
+		height: image-height(@img);
+		margin-left: 338px;
+		margin-top: -52px;
+	}
+
+	.p3 {
+		@img: './img/puipui-3.png';
+		background-image: url(@img);
+		width: image-width(@img);
+		height: image-height(@img);
+		margin-left: 338px;
+		margin-top: -54px;
+	}
+
+	.p4 {
+		@img: './img/puipui-4.png';
+		background-image: url(@img);
+		width: image-width(@img);
+		height: image-height(@img);
+		margin-left: 345px;
+		margin-top: -54px;
+	}
+
+	.p5 {
+		@img: './img/puipui-5.png';
+		background-image: url(@img);
+		width: image-width(@img);
+		height: image-height(@img);
+		margin-left: 345px;
+		margin-top: -54px;
+	}
+}

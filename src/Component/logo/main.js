@@ -16,6 +16,9 @@ export default class main extends React.Component {
 				this.el = parseInt(this.c.css('left'));
 				this.l = -120;
 				this.tran();
+
+				const { show_puipui } = require('./../../_config');
+				if (!show_puipui) root.refs.main.style.width = '101px';
 			},
 			in() {
 				$(this).animate(

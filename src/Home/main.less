@@ -39,17 +39,32 @@
 			width: image-width(@img);
 			height: image-height(@img);
 			margin-left: 0 - image-width(@img) * 0.5 - 50px;
-			margin-top: 0 - image-height(@img) * 0.5 - 200px;
+			margin-top: 0 - image-height(@img) * 0.5 - 170px;
 			transform-origin: 276px 284px;
 
+			@puipui: './img/puipui.png';
+
+			@keyframes play11 {
+				from {
+					left: 0px;
+					top: 0px;
+				}
+				to {
+					left: 4px;
+					top: -5px;
+				}
+			}
 			.puipui {
 				position: absolute;
-				@img: './img/puipui.png';
-				background-image: url(@img);
-				width: image-width(@img);
-				height: image-height(@img);
-				left: 366px;
-				top: -38px;
+
+				background-image: url(@puipui);
+				width: image-width(@puipui);
+				height: image-height(@puipui);
+				margin-left: 330px;
+				margin-top: 12px;
+				background-position-y: 0px;
+
+				animation: play11 0.2s steps(2) 2s infinite;
 			}
 		}
 
@@ -63,7 +78,7 @@
 				position: absolute;
 			}
 
-			& > div:nth-child(5) {
+			& > div:nth-child(4) {
 				background-image: url(@imgs);
 				width: image-width(@imgs);
 				height: image-height(@imgs);
@@ -71,7 +86,7 @@
 				margin-top: 80px;
 			}
 
-			& > div:nth-child(4) {
+			& > div:nth-child(3) {
 				background-image: url(@imgs);
 				width: image-width(@imgs);
 				height: image-height(@imgs);
@@ -81,7 +96,7 @@
 				opacity: 0.5;
 			}
 
-			& > div:nth-child(3) {
+			& > div:nth-child(2) {
 				background-image: url(@imgf);
 				width: image-width(@imgf);
 				height: image-height(@imgf);
@@ -91,23 +106,13 @@
 				opacity: 1;
 			}
 
-			& > div:nth-child(2) {
+			& > div:nth-child(1) {
 				background-image: url(@imgf);
 				width: image-width(@imgf);
 				height: image-height(@imgf);
 				margin-left: -316px;
 				margin-top: -189px;
 				transform: scale(0.6) rotate(-33deg);
-				opacity: 0.7;
-			}
-
-			& > div:nth-child(1) {
-				background-image: url(@imgf);
-				width: image-width(@imgf);
-				height: image-height(@imgf);
-				margin-left: -186px;
-				margin-top: -719px;
-				transform: scale(0.5) rotate(-14deg);
 				opacity: 0.7;
 			}
 		}

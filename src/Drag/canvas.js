@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import $, { timers } from 'jquery';
 require('jquery-easing');
 
 export default class canvas extends React.Component {
@@ -8,6 +8,7 @@ export default class canvas extends React.Component {
 		const root = this;
 		this.tr = {
 			is: true,
+			draw_index: 0,
 			init() {
 				this.canvas.init();
 				this.line.init();
@@ -41,6 +42,7 @@ export default class canvas extends React.Component {
 							let oy = 0;
 							if (e.targetTouches) oy = (window.innerHeight - 750) / 2;
 							this.canvas.move(px, py - oy);
+							this.draw_index++;
 						} catch {}
 					}
 				};
@@ -117,6 +119,10 @@ export default class canvas extends React.Component {
 				},
 			},
 		};
+	}
+
+	check() {
+		return this.tr.draw_index > 50;
 	}
 
 	capture() {

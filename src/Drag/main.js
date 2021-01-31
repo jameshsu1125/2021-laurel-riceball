@@ -37,13 +37,13 @@ export default class main extends React.Component {
 				s: 1,
 				o: 1,
 				t: 0,
-				time: 2000,
+				time: 1200,
 				init() {
 					this.c = $(root.refs.container);
 				},
 				out() {
 					$(this).animate(
-						{ s: 1.3, o: 0, t: 100 },
+						{ s: 1, o: 0, t: 0 - window.innerHeight },
 						{
 							duration: this.time,
 							step: () => this.tran(),
@@ -51,7 +51,7 @@ export default class main extends React.Component {
 								this.tran();
 								root.props.end();
 							},
-							easing: 'easeInOutQuart',
+							easing: 'easeInQuart',
 						}
 					);
 				},
@@ -154,11 +154,15 @@ export default class main extends React.Component {
 				},
 				evt() {
 					Click.add('.btn-submit', () => {
-						Click.remove('.btn-submit');
-						Click.remove('.btn-reset');
-						root.tr.out();
-						let e = root.refs.canvas.capture();
-						root.props.capture(e);
+						if (root.refs.canvas.check()) {
+							Click.remove('.btn-submit');
+							Click.remove('.btn-reset');
+							root.tr.out();
+							let e = root.refs.canvas.capture();
+							root.props.capture(e);
+						} else {
+							alert('是不是應該寫點什麼?');
+						}
 					});
 				},
 			},

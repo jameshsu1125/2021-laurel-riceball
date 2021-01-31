@@ -19,7 +19,7 @@ export default class balloon extends React.Component {
 				x: 20,
 				y: 500,
 				r: 5,
-				s: 1,
+				s: 0.95,
 				o: 0,
 				delay: 0,
 				deg: 0,
@@ -27,6 +27,8 @@ export default class balloon extends React.Component {
 				radius: 20,
 				init() {
 					this.c = $(root.refs.balloon);
+					const { show_puipui } = require('./../_config');
+					if (!show_puipui) root.refs.puipui.style.display = 'none';
 					this.tran();
 				},
 				in() {
@@ -83,7 +85,7 @@ export default class balloon extends React.Component {
 	render() {
 		return (
 			<div ref='balloon' className='main_balloon'>
-				<div className='puipui'></div>
+				<div ref='puipui' className='puipui'></div>
 			</div>
 		);
 	}

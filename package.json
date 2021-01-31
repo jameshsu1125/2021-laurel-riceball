@@ -61,6 +61,7 @@
 		"lesca-enterframe": "^1.0.1",
 		"lesca-facebook-share": "^1.0.1",
 		"lesca-react-loading": "^1.0.0",
+		"lesca-url-parameters": "^1.0.0",
 		"mouse-wheel": "^1.2.0",
 		"react": "^16.6.3",
 		"react-animate-on-scroll": "^2.1.5",

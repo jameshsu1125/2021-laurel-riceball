@@ -1,0 +1,192 @@
+#ticket {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	.background {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.67);
+	}
+
+	.container {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+
+		.moon {
+			position: absolute;
+			@img: './img/moon.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			margin-left: 0 - image-width(@img) * 0.5;
+			margin-top: 0 - image-height(@img) * 0.5;
+
+			transform-style: preserve-3d;
+			perspective: 1000px;
+
+			.submited-btn {
+				position: absolute;
+				@img: './img/submited_btn_txt.png';
+				background-image: url(@img);
+				width: 311px;
+				height: 56px;
+				left: 50%;
+				margin-left: 0 - 311px/2;
+				background-color: #e65513;
+				border-radius: 56px/2;
+				background-position: center;
+				background-repeat: no-repeat;
+				margin-top: 445px;
+
+				cursor: pointer;
+
+				&:hover {
+					background-color: #ce4d12;
+				}
+			}
+
+			.submited-txt {
+				position: absolute;
+				@img: './img/submited_txt.png';
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img);
+
+				left: 50%;
+				margin-left: 0 - image-width(@img) * 0.5;
+				margin-top: 263px;
+			}
+
+			.submit {
+				position: absolute;
+				@img: './img/submit.png';
+				background-image: url(@img);
+				width: 151px;
+				height: 53px;
+				left: 50%;
+				background-size: image-width(@img) * 0.6944;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-color: #40210f;
+				border-radius: 20px;
+
+				margin-left: 0 - 151px / 2;
+				margin-top: 630px;
+				cursor: pointer;
+
+				&:hover {
+					background-color: #ce4d12;
+				}
+			}
+
+			.check {
+				position: absolute;
+				@img: './img/check.png';
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img) / 2;
+
+				left: 50%;
+				margin-left: -228.5px;
+				margin-top: 552px;
+
+				cursor: pointer;
+			}
+
+			.term {
+				position: absolute;
+				@img: './img/term.png';
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img);
+				left: 50%;
+				margin-left: -157px;
+				margin-top: 588px;
+			}
+
+			.form {
+				position: absolute;
+				@img: './img/form.png';
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img);
+				left: 50%;
+				top: 50%;
+				margin-left: 0 - image-width(@img) * 0.5;
+				margin-top: -246px;
+
+				& > input {
+					position: absolute;
+					padding: 15px;
+					width: 553px;
+					border: none;
+					background: transparent;
+					font-size: 50px;
+					transform-origin: left top;
+					transform: scale(0.5);
+					margin-left: 152px;
+				}
+
+				.name {
+					margin-top: 198px;
+				}
+
+				.tel {
+					margin-top: 271px;
+				}
+
+				.email {
+					margin-top: 345px;
+				}
+			}
+
+			.puipui {
+				position: absolute;
+				@img: './img/puipui.png';
+				background-image: url(@img);
+				width: image-width(@img);
+				height: image-height(@img);
+				left: 50%;
+				margin-top: -70px;
+				margin-left: 0 - image-width(@img) * 0.5;
+			}
+		}
+
+		.close {
+			position: absolute;
+			@img: './img/close.png';
+			background-image: url(@img);
+			width: 100px;
+			height: 100px;
+			background-position: center;
+			background-repeat: no-repeat;
+			border-radius: 50%;
+			border: solid 3px #fff;
+
+			margin-left: -50px;
+			margin-top: 395px;
+			background-size: image-width(@img) * 0.6944;
+			transition: 0.2s ease-out;
+
+			cursor: pointer;
+
+			&:hover {
+				//background-size: image-width(@img) * 0.9;
+				background-color: #ce4d12;
+			}
+		}
+
+		.logo {
+			position: absolute;
+			@img: './img/logo.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			margin-left: 0 - image-width(@img) * 0.5;
+			margin-top: -550px;
+		}
+	}
+}

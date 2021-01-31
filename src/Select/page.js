@@ -17,6 +17,9 @@ export default class page extends React.Component {
 				this.title.init();
 				this.carving.init();
 				this.riceball.init();
+
+				const { show_puipui } = require('./../_config');
+				if (!show_puipui) root.refs.puipui.style.display = 'none';
 			},
 			in() {
 				this.c.css('visibility', 'visible');
@@ -299,6 +302,7 @@ export default class page extends React.Component {
 							easing: 'easeInOutQuart',
 						}
 					);
+					$(root.refs.puipui).animate({ opacity: 0 }, 2000, 'easeInOutQuart');
 				},
 				tran() {
 					this.c.css({
@@ -358,7 +362,9 @@ export default class page extends React.Component {
 						<div className='name'></div>
 						<div className='description'></div>
 					</div>
-					<div ref='riceball' className='riceball'></div>
+					<div ref='riceball' className='riceball'>
+						<div ref='puipui' className='puipui'></div>
+					</div>
 				</div>
 			</div>
 		);

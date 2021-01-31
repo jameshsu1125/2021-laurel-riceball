@@ -1,13 +1,15 @@
 import React from 'react';
 import './main.less';
 
-import $, { timers } from 'jquery';
+import $ from 'jquery';
 require('jquery-easing');
 require('jquery.waitforimages');
 
-import Balloon from './balloon';
-import Balloons from './balloons';
-import Halo from './halo';
+import Balloon from './../Component/balloon/main';
+import Balloons from './../Component/lantern/main';
+import Halo from '../Component/halo/main';
+
+import Get from 'lesca-url-parameters';
 
 export default class main extends React.Component {
 	constructor(props) {
@@ -22,6 +24,7 @@ export default class main extends React.Component {
 			},
 			in() {
 				root.refs.main.style.display = 'block';
+
 				root.refs.balloon.in();
 				root.refs.balloons.in();
 				root.refs.halo.in();
@@ -85,11 +88,18 @@ export default class main extends React.Component {
 							root.refs.input.focus();
 							return;
 						} else {
-							//root.props.FB
-							let data = btoa(JSON.stringify({ who: root.refs.balloon.state.txt }));
+							let data = {
+								to: encodeURIComponent(escape(root.refs.balloon.state.txt)),
+								puipui: require('./../_config').show_puipui,
+								i: root.props.index,
+							};
+
+							let share_url = { ...data, s: true };
+
+							let u = window.location.hostname === 'localhost' ? 'https://google.com' : Get.root() + `success.html?data=${btoa(JSON.stringify(data))}`;
 							root.props.FB.share({
-								url: 'https://www.google.com',
-								redirect_uri: window.location.href + `?data=${data}`,
+								url: u,
+								redirect_uri: Get.root() + `success.html?data=${btoa(JSON.stringify(share_url))}`,
 							});
 						}
 					});
@@ -230,7 +240,7 @@ export default class main extends React.Component {
 				<div className='container'>
 					<Halo ref='halo' />
 					<Balloons ref='balloons' />
-					<Balloon ref='balloon' image={this.props.image} />
+					<Balloon ref='balloon' image={this.props.image} index={this.props.index} />
 					<div ref='target' className='target'>
 						<div ref='txt' className='txt'></div>
 						<div ref='form' className='form'>

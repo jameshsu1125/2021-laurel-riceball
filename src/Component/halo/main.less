@@ -1,0 +1,22 @@
+#halo {
+	position: relative;
+	& > div {
+		position: absolute;
+		@img: './img/halo.png';
+		background-image: url(@img);
+		width: image-width(@img);
+		height: image-height(@img);
+	}
+
+	& > div:nth-child(1) {
+		margin-left: -70vw;
+		margin-top: -2vh;
+		transform: scale(0.7);
+	}
+
+	& > div:nth-child(2) {
+		margin-left: 13vw;
+		margin-top: 14vh;
+		transform: scale(0.4);
+	}
+}

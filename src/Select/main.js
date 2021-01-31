@@ -90,7 +90,7 @@ export default class main extends React.Component {
 			},
 			submit: {
 				o: 0,
-				t: 500,
+				t: 550,
 				delay: 1200,
 				init() {
 					this.c = $(root.refs.submit);
@@ -100,7 +100,7 @@ export default class main extends React.Component {
 					$(this)
 						.delay(this.delay)
 						.animate(
-							{ o: 1, t: 400 },
+							{ o: 1, t: 450 },
 							{
 								duration: this.time,
 								step: () => this.tran(),

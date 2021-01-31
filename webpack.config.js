@@ -10,6 +10,7 @@ module.exports = (env) => {
 	const config = {
 		entry: {
 			index: './src/index.js',
+			success: './src/success.js',
 		},
 		module: {
 			rules: [
@@ -55,7 +56,7 @@ module.exports = (env) => {
 			port: 8080,
 			public: 'localhost:8080',
 			disableHostCheck: true,
-			https: false,
+			https: true,
 		},
 		performance: {
 			hints: false,
