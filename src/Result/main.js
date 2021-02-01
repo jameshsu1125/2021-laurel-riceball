@@ -8,8 +8,8 @@ require('jquery.waitforimages');
 import Balloon from './../Component/balloon/main';
 import Balloons from './../Component/lantern/main';
 import Halo from '../Component/halo/main';
-
 import Get from 'lesca-url-parameters';
+import Popup from './../Component/popup/main';
 
 export default class main extends React.Component {
 	constructor(props) {
@@ -18,7 +18,6 @@ export default class main extends React.Component {
 		this.tr = {
 			init() {
 				this.target.init();
-				this.popup.init();
 				this.again.init();
 				this.share.init();
 			},
@@ -28,11 +27,16 @@ export default class main extends React.Component {
 				root.refs.balloon.in();
 				root.refs.balloons.in();
 				root.refs.halo.in();
+				root.refs.popup.in();
 
 				this.target.in();
-				this.popup.in();
 				this.again.in();
 				this.share.in();
+			},
+			back() {
+				$(root.refs.main).animate({ opacity: 0 }, 1000, 'easeOutQuart', () => {
+					root.props.destory('result');
+				});
 			},
 			share: {
 				o: 0,
@@ -83,24 +87,31 @@ export default class main extends React.Component {
 				},
 				evt() {
 					Click.add('.btn-share', () => {
-						if (root.refs.balloon.state.txt === '') {
+						let txt = root.refs.balloon.tr.canvas.txt;
+						if (txt === '') {
 							alert('請輸入祈願對象');
 							root.refs.input.focus();
 							return;
 						} else {
 							let data = {
-								to: encodeURIComponent(escape(root.refs.balloon.state.txt)),
-								puipui: require('./../_config').show_puipui,
-								i: root.props.index,
+								image: root.props.image,
+								to: root.refs.balloon.tr.canvas.catch(),
 							};
 
-							let share_url = { ...data, s: true };
-
-							let u = window.location.hostname === 'localhost' ? 'https://google.com' : Get.root() + `success.html?data=${btoa(JSON.stringify(data))}`;
-							root.props.FB.share({
-								url: u,
-								redirect_uri: Get.root() + `success.html?data=${btoa(JSON.stringify(share_url))}`,
-							});
+							require('./../_config')
+								.share(data)
+								.then((e) => {
+									let data = {
+										to: encodeURIComponent(escape(txt)),
+										puipui: require('./../_config').show_puipui,
+										i: root.props.index,
+									};
+									let u = window.location.hostname === 'localhost' ? 'https://google.com' : Get.root() + `success.html?data=${btoa(JSON.stringify(data))}`;
+									root.props.FB.share({
+										url: u,
+										redirect_uri: Get.root() + `success.html?data=${btoa(JSON.stringify(data))}`,
+									});
+								});
 						}
 					});
 				},
@@ -158,39 +169,6 @@ export default class main extends React.Component {
 					});
 				},
 			},
-			popup: {
-				o: 0,
-				s: 0,
-				delay: 5000,
-				time: 800,
-				init() {
-					this.c = $(root.refs.popup);
-					this.tran();
-				},
-				in() {
-					$(this)
-						.delay(this.delay)
-						.animate(
-							{ o: 1, s: 1 },
-							{
-								duration: this.time,
-								step: () => this.tran(),
-								complete: () => this.tran(),
-								easing: 'easeOutBack',
-							}
-						);
-				},
-				tran() {
-					this.c.css({
-						transform: `scale(${this.s})`,
-						'-webkit-transform': `scale(${this.s})`,
-						'-moz-transform': `scale(${this.s})`,
-						'-o-transform': `scale(${this.s})`,
-						'-ms-transform': `scale(${this.s})`,
-						opacity: this.o,
-					});
-				},
-			},
 			target: {
 				o: 0,
 				delay: 3000,
@@ -225,6 +203,10 @@ export default class main extends React.Component {
 		this.tr.init();
 	}
 
+	back() {
+		this.tr.back();
+	}
+
 	in() {
 		this.tr.in();
 		EnterFrame.go = true;
@@ -247,7 +229,7 @@ export default class main extends React.Component {
 							<input ref='input' onChange={this.txt_change.bind(this)} type='text' maxLength='4'></input>
 						</div>
 					</div>
-					<div ref='popup' className='popup'></div>
+					<Popup ref='popup' />
 					<div ref='again' className='btn-again'></div>
 					<div ref='share' className='btn-share'></div>
 				</div>

@@ -4,7 +4,6 @@ import './main.less';
 import Background from '../Component/background/main';
 import Logo from '../Component/logo/main';
 import Fiftieth from '../Component/fiftieth/main';
-import Ticket from './../Component/ticket/main';
 
 import Click from 'lesca-click';
 import EnterFrame from 'lesca-enterframe';
@@ -23,7 +22,8 @@ export default class main extends React.Component {
 
 		this.data = JSON.parse(unescape(decodeURIComponent(atob(Hash.get('data').split('#')[0].split('%3D').join('')))));
 
-		this.state = { loading: true, success: true, ticket: this.data.s };
+		this.state = { loading: true, success: true };
+		console.log(this.data);
 		// ? this.image = '';
 		//console.log(this.data);
 
@@ -97,10 +97,6 @@ export default class main extends React.Component {
 		if (this.state.success) return <Success ref='success' data={this.data} />;
 	}
 
-	append_ticket() {
-		if (this.state.ticket) return <Ticket ref='ticket' to={this.to} destory={this.ticket_destory.bind(this)} />;
-	}
-
 	render() {
 		return (
 			<div ref='main' id='success'>
@@ -111,7 +107,6 @@ export default class main extends React.Component {
 				{this.append_loading()}
 				<Fiftieth />
 				<Logo />
-				{this.append_ticket()}
 			</div>
 		);
 	}

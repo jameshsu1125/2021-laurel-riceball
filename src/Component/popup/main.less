@@ -1,0 +1,30 @@
+#popup {
+	position: absolute;
+	@img: './img/popup.png';
+	background-image: url(@img);
+	width: image-width(@img);
+	height: image-height(@img);
+	left: 200px;
+	top: -290px;
+	transform-origin: 0px 51px;
+
+	& > div {
+		position: absolute;
+		cursor: pointer;
+	}
+
+	& > div:nth-child(1) {
+		width: 250px;
+		height: 260px;
+
+		left: -200px;
+		top: -110px;
+	}
+
+	& > div:nth-child(2) {
+		width: 130px;
+		height: 350px;
+		left: 0px;
+		top: 0px;
+	}
+}

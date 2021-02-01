@@ -4,6 +4,9 @@ import './success.less';
 import Halo from './../Component/halo/main';
 import Lantern from './../Component/lantern/main';
 import Balloon from './../Component/balloon/main';
+import Popup from './../Component/popup/main';
+
+import Hash from 'lesca-url-parameters';
 
 import $ from 'jquery';
 require('jquery-easing');
@@ -24,6 +27,7 @@ export default class success extends React.Component {
 				root.refs.balloon.in();
 				root.refs.balloons.in();
 				root.refs.halo.in();
+				root.refs.popup.in();
 
 				root.refs.balloon.visible_puipui(root.props.data.puipui);
 
@@ -102,6 +106,7 @@ export default class success extends React.Component {
 					<Halo ref='halo' />
 					<Lantern ref='balloons' />
 					<Balloon ref='balloon' image={this.props.data.image || ''} index={this.props.data.i} />
+					<Popup ref='popup' />
 					<div ref='btn' className='btn'></div>
 				</div>
 			</div>

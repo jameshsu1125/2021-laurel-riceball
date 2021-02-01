@@ -5,22 +5,45 @@ import $ from 'jquery';
 require('jquery-easing');
 
 import Hash from 'lesca-url-parameters';
+import canvasTxt from 'canvas-txt';
 
 export default class balloon extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { txt: '' };
 
 		const root = this;
 		this.tr = {
 			init() {
 				this.balloon.init();
+				this.canvas.init();
 				const { show_puipui } = require('./../../_config');
 				if (!show_puipui) root.refs.puipui.style.display = 'none';
 				return this;
 			},
 			in() {
 				this.balloon.in();
+			},
+			canvas: {
+				txt: '',
+				init() {
+					this.c = root.refs.canvas;
+					this.ctx = this.c.getContext('2d');
+					this.ctx.transform(1.0, 0.0, -0.5, 1.2, 0, 0);
+					this.draw();
+				},
+				update(t) {
+					this.txt = t;
+					this.draw();
+				},
+				draw() {
+					this.ctx.clearRect(0, 0, 200, 200);
+					canvasTxt.font = 'LiSong Pro';
+					canvasTxt.fontSize = 26;
+					canvasTxt.drawText(this.ctx, this.txt, 0, 0, 182, 100);
+				},
+				catch() {
+					return this.c.toDataURL('"image/png"', 0.5);
+				},
 			},
 			balloon: {
 				x: 10,
@@ -55,6 +78,7 @@ export default class balloon extends React.Component {
 				},
 				swing: function () {
 					EnterFrame.go = true;
+					EnterFrame.play();
 					EnterFrame.add(() => {
 						this.deg += 0.4;
 						this.x = Math.cos((Math.PI / 180) * this.deg) * this.radius;
@@ -89,11 +113,7 @@ export default class balloon extends React.Component {
 	}
 
 	update(txt) {
-		this.setState({ txt: txt });
-	}
-
-	append_txt() {
-		return this.state.txt;
+		this.tr.canvas.update(txt);
 	}
 
 	visible_puipui(e) {
@@ -107,7 +127,9 @@ export default class balloon extends React.Component {
 				<div className={'ball b' + this.props.index}></div>
 				<div className='draw' style={{ backgroundImage: `url(${this.props.image || require('./../../Index/fakeimage').img})` }}></div>
 				<div ref='puipui' className={'puipui p' + this.props.index}></div>
-				<div className='txt'>{this.append_txt()}</div>
+				<div className='canvas_txt'>
+					<canvas ref='canvas' width='130' height='120'></canvas>
+				</div>
 			</div>
 		);
 	}

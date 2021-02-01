@@ -33,6 +33,11 @@ export default class main extends React.Component {
 				this.blur.out();
 				this.container.out();
 			},
+			back() {
+				$(root.refs.main).animate({ opacity: 0 }, 1000, 'easeOutQuart', () => {
+					root.props.destory('drag');
+				});
+			},
 			container: {
 				s: 1,
 				o: 1,
@@ -192,18 +197,20 @@ export default class main extends React.Component {
 						);
 				},
 				out() {
-					$(this).animate(
-						{ o: 0, t: 100 },
-						{
-							duration: this.time,
-							step: () => this.tran(),
-							complete: () => {
-								this.tran();
-								this.evt();
-							},
-							easing: 'easeInOutQuart',
-						}
-					);
+					$(this)
+						.delay(200)
+						.animate(
+							{ o: 0, t: 100 },
+							{
+								duration: this.time,
+								step: () => this.tran(),
+								complete: () => {
+									this.tran();
+									this.evt();
+								},
+								easing: 'easeInOutQuart',
+							}
+						);
 				},
 				tran() {
 					this.c.css({
@@ -255,6 +262,10 @@ export default class main extends React.Component {
 				},
 			},
 		};
+	}
+
+	back() {
+		this.tr.back();
 	}
 
 	componentWillUnmount() {

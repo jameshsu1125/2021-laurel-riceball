@@ -29,7 +29,7 @@
 		background-image: url(@ball);
 	}
 
-	.b2 {
+	.b3 {
 		@ball: './img/riceball-3.png';
 		background-image: url(@ball);
 	}
@@ -40,11 +40,12 @@
 	}
 
 	.b5 {
-		@ball: './img/riceball-2.png';
+		@ball: './img/riceball-5.png';
 		background-image: url(@ball);
 	}
 
-	.txt {
+	.txt,
+	.canvas_txt {
 		position: absolute;
 		width: 130px;
 		height: 120px;
@@ -53,11 +54,15 @@
 		text-align: center;
 		font-size: 26px;
 		line-height: 120px;
-		transform: scale(1, 1.2) skewX(-10deg);
+		//transform: scale(1, 1.2) skewX(-10deg);
 
 		font-family: 'PMingLiU', 'LiSong Pro', 'MingLiU', serif;
 		font-weight: bold;
 		cursor: default;
+
+		canvas {
+			//background-color: rgba(0, 0, 0, 0.2);
+		}
 	}
 
 	.draw {

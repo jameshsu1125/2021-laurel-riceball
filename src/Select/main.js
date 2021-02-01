@@ -29,7 +29,7 @@ export default class main extends React.Component {
 			},
 			back() {
 				$(root.refs.main).animate({ opacity: 0 }, 1000, 'easeOutQuart', () => {
-					root.props.destory();
+					root.props.destory('select');
 				});
 			},
 			al: {

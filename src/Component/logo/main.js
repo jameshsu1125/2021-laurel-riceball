@@ -5,6 +5,8 @@ import $ from 'jquery';
 require('jquery-easing');
 require('jquery.waitforimages');
 
+import Hash from 'lesca-url-parameters';
+
 export default class main extends React.Component {
 	constructor(props) {
 		super(props);
@@ -40,7 +42,9 @@ export default class main extends React.Component {
 				});
 			},
 			evt() {
-				Click.add('#logo', () => {});
+				Click.add('#logo', () => {
+					window.location.href = Hash.root();
+				});
 			},
 		};
 	}

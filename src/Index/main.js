@@ -10,6 +10,7 @@ import Home from './../Home/main';
 import Select from './../Select/main';
 import Drag from './../Drag/main';
 import Result from './../Result/main';
+import Ticket from './../Component/ticket/main';
 
 import Click from 'lesca-click';
 import Loading from 'lesca-react-loading';
@@ -26,7 +27,7 @@ export default class index extends React.Component {
 		const root = this;
 		FB.install('171368189560011', {});
 
-		this.state = { loading: true, home: true, select: true, drag: true, result: true };
+		this.state = { loading: true, home: true, select: true, drag: true, result: true, ticket: true };
 
 		this.drag_index = 1;
 		this.img = location.hostname === 'localhost' ? require('./fakeimage').img : '';
@@ -92,8 +93,10 @@ export default class index extends React.Component {
 		if (this.state.home) return <Home ref='home' next={this.home_next.bind(this)} upup={this.bg_upup.bind(this)} />;
 	}
 
-	select_destory() {
-		this.setState({ select: false });
+	destory(key) {
+		let o = {};
+		o[key] = false;
+		this.setState(o);
 	}
 
 	bg_upup() {
@@ -109,23 +112,25 @@ export default class index extends React.Component {
 	}
 
 	append_select() {
-		if (this.state.select) return <Select ref='select' destory={this.select_destory.bind(this)} next={this.select_next.bind(this)} />;
+		if (this.state.select) return <Select ref='select' destory={this.destory.bind(this)} next={this.select_next.bind(this)} />;
 	}
 
 	back_prev() {
 		this.refs.bg.up();
-		this.refs.select.back();
+		if (this.refs.select) this.refs.select.back();
+		if (this.refs.drag) this.refs.drag.back();
+		if (this.refs.result) this.refs.result.back();
 		this.setState({ home: true }, () => {
 			this.refs.home.in();
 		});
 	}
 
 	append_back() {
-		if (this.state.select) return <Back back={this.back_prev.bind(this)} />;
+		if (this.state.select || this.state.drag) return <Back back={this.back_prev.bind(this)} />;
 	}
 
 	append_loading() {
-		if (this.state.loading) return <Loading />;
+		if (this.state.loading) return <Loading text={'檔案下載中...'} />;
 	}
 
 	drag_capture(e) {
@@ -140,11 +145,25 @@ export default class index extends React.Component {
 	}
 
 	append_drag() {
-		if (this.state.drag) return <Drag ref='drag' index={this.drag_index} capture={this.drag_capture.bind(this)} end={this.drag_end.bind(this)} />;
+		if (this.state.drag) return <Drag ref='drag' destory={this.destory.bind(this)} index={this.drag_index} capture={this.drag_capture.bind(this)} end={this.drag_end.bind(this)} />;
+	}
+
+	result_ticket() {
+		this.setState({ ticket: true }, () => {
+			this.refs.ticket.in();
+		});
 	}
 
 	append_result() {
-		if (this.state.result) return <Result ref='result' image={this.img} FB={FB} index={this.drag_index} />;
+		if (this.state.result) return <Result ref='result' ticket={this.result_ticket.bind(this)} destory={this.destory.bind(this)} image={this.img} FB={FB} index={this.drag_index} />;
+	}
+
+	ticket_destory() {
+		this.setState({ ticket: false });
+	}
+
+	append_ticket() {
+		if (this.state.ticket) return <Ticket ref='ticket' destory={this.ticket_destory.bind(this)} />;
 	}
 
 	render() {
@@ -161,6 +180,7 @@ export default class index extends React.Component {
 				{this.append_loading()}
 				<Logo />
 				<Fiftieth />
+				{this.append_ticket()}
 			</div>
 		);
 	}

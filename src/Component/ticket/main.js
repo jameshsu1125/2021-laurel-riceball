@@ -23,6 +23,7 @@ export default class ticket extends React.Component {
 				this.submit.init();
 			},
 			in() {
+				root.refs.main.style.display = 'block';
 				this.logo.in();
 				this.moon.in();
 				this.close.in();
@@ -282,10 +283,10 @@ export default class ticket extends React.Component {
 
 	componentDidMount() {
 		this.tr.init();
-		$(this.refs.main).waitForImages({
-			finished: () => this.tr.in(),
-			waitForAll: true,
-		});
+	}
+
+	in() {
+		this.tr.in();
 	}
 
 	append_content() {
