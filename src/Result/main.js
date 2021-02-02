@@ -97,6 +97,8 @@ export default class main extends React.Component {
 							root.props.add_loading();
 
 							Gtag.event('結果頁', '分享');
+							let fb_share_cagegory = ['花生天燈', '芝麻天燈', '鮮肉天燈', '流沙天燈', '抹茶天燈'];
+							if (fbq) fbq('trackCustom', `天燈分享`, { type: fb_share_cagegory[this.props.index] });
 
 							let data = {
 								image: root.props.image,
@@ -224,6 +226,7 @@ export default class main extends React.Component {
 		});
 		EnterFrame.go = true;
 		Gtag.pv('結果頁');
+		if (fbq) fbq('trackCustom', '結果頁', { path: '結果頁' });
 	}
 
 	txt_change(e) {

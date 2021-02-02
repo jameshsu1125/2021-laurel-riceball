@@ -283,6 +283,8 @@ export default class main extends React.Component {
 	in() {
 		this.tr.in();
 		Gtag.pv('手寫頁');
+
+		if (fbq) fbq('trackCustom', '手寫頁', { path: '手寫頁' });
 	}
 
 	demo_end() {

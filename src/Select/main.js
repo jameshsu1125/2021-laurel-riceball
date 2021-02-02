@@ -287,6 +287,7 @@ export default class main extends React.Component {
 	in() {
 		this.tr.in();
 		Gtag.pv('選擇頁');
+		if (fbq) fbq('trackCustom', '選擇頁', { path: '選擇頁' });
 	}
 
 	back() {

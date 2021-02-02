@@ -297,6 +297,7 @@ export default class ticket extends React.Component {
 		this.tr.in();
 		setTimeout(() => {
 			Gtag.pv('報名頁');
+			if (fbq) fbq('trackCustom', '報名頁', { path: '報名頁' });
 		}, 100);
 	}
 

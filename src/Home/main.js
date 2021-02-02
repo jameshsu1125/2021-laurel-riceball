@@ -128,6 +128,8 @@ export default class main extends React.Component {
 		this.refs.balloons.in();
 		this.refs.balloon.in();
 		Gtag.pv('首頁');
+
+		if (fbq) fbq('trackCustom', '首頁', { path: '首頁' });
 	}
 
 	componentWillUnmount() {

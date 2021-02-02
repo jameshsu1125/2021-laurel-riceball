@@ -99,6 +99,7 @@ export default class success extends React.Component {
 	in() {
 		this.tr.in();
 		Gtag.pv('UGC頁');
+		if (fbq) fbq('trackCustom', 'UGC頁', { path: 'UGC頁' });
 	}
 
 	render() {
