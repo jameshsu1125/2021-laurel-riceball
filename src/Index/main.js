@@ -154,8 +154,28 @@ export default class index extends React.Component {
 		});
 	}
 
+	add_loading() {
+		this.setState({ loading: true });
+	}
+
+	destory_loading() {
+		this.setState({ loading: false });
+	}
+
 	append_result() {
-		if (this.state.result) return <Result ref='result' ticket={this.result_ticket.bind(this)} destory={this.destory.bind(this)} image={this.img} FB={FB} index={this.drag_index} />;
+		if (this.state.result)
+			return (
+				<Result
+					ref='result'
+					ticket={this.result_ticket.bind(this)}
+					destory={this.destory.bind(this)}
+					image={this.img}
+					FB={FB}
+					index={this.drag_index}
+					add_loading={this.add_loading.bind(this)}
+					destory_loading={this.destory_loading.bind(this)}
+				/>
+			);
 	}
 
 	ticket_destory() {

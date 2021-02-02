@@ -4,6 +4,7 @@ import './main.less';
 import Background from '../Component/background/main';
 import Logo from '../Component/logo/main';
 import Fiftieth from '../Component/fiftieth/main';
+import Ticket from './../Component/ticket/main';
 
 import Click from 'lesca-click';
 import EnterFrame from 'lesca-enterframe';
@@ -22,12 +23,10 @@ export default class main extends React.Component {
 
 		this.data = JSON.parse(unescape(decodeURIComponent(atob(Hash.get('data').split('#')[0].split('%3D').join('')))));
 
-		this.state = { loading: true, success: true };
-		console.log(this.data);
+		this.state = { loading: true, success: true, ticket: true };
 		// ? this.image = '';
 		//console.log(this.data);
 
-		//script
 		Click.init();
 		EnterFrame.init();
 
@@ -36,7 +35,6 @@ export default class main extends React.Component {
 				this.ctx.init();
 			},
 			in() {
-				let is_ticket = root.state.ticket;
 				let c = location.hostname === 'localhost' ? 'success' : 'success';
 				let o = { ...root.state };
 				delete o[c];
@@ -45,8 +43,6 @@ export default class main extends React.Component {
 				root.setState(o, () => {
 					root.refs[c].in();
 					root.refs.bg.up();
-
-					if (is_ticket) root.setState({ ticket: true });
 				});
 			},
 			ctx: {
@@ -85,16 +81,26 @@ export default class main extends React.Component {
 		});
 	}
 
-	ticket_destory() {
-		this.setState({ ticket: false });
-	}
-
 	append_loading() {
 		if (this.state.loading) return <Loading />;
 	}
 
 	append_success() {
-		if (this.state.success) return <Success ref='success' data={this.data} />;
+		if (this.state.success) return <Success ref='success' ticket={this.get_ticket.bind(this)} data={this.data} />;
+	}
+
+	get_ticket() {
+		this.setState({ ticket: true }, () => {
+			this.refs.ticket.in();
+		});
+	}
+
+	destory_ticket() {
+		this.setState({ ticket: false });
+	}
+
+	append_ticket() {
+		if (this.state.ticket) return <Ticket ref='ticket' destory={this.destory_ticket.bind(this)} />;
 	}
 
 	render() {
@@ -107,6 +113,7 @@ export default class main extends React.Component {
 				{this.append_loading()}
 				<Fiftieth />
 				<Logo />
+				{this.append_ticket()}
 			</div>
 		);
 	}

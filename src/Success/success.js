@@ -106,7 +106,7 @@ export default class success extends React.Component {
 					<Halo ref='halo' />
 					<Lantern ref='balloons' />
 					<Balloon ref='balloon' image={this.props.data.image || ''} index={this.props.data.i} />
-					<Popup ref='popup' />
+					<Popup ref='popup' ticket={this.props.ticket} />
 					<div ref='btn' className='btn'></div>
 				</div>
 			</div>

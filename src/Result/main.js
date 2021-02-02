@@ -93,6 +93,8 @@ export default class main extends React.Component {
 							root.refs.input.focus();
 							return;
 						} else {
+							root.props.add_loading();
+
 							let data = {
 								image: root.props.image,
 								to: root.refs.balloon.tr.canvas.catch(),
@@ -101,6 +103,7 @@ export default class main extends React.Component {
 							require('./../_config')
 								.share(data)
 								.then((e) => {
+									//root.props.destory_loading();
 									let data = {
 										to: encodeURIComponent(escape(txt)),
 										puipui: require('./../_config').show_puipui,
@@ -229,7 +232,7 @@ export default class main extends React.Component {
 							<input ref='input' onChange={this.txt_change.bind(this)} type='text' maxLength='4'></input>
 						</div>
 					</div>
-					<Popup ref='popup' />
+					<Popup ref='popup' ticket={this.props.ticket} />
 					<div ref='again' className='btn-again'></div>
 					<div ref='share' className='btn-share'></div>
 				</div>
