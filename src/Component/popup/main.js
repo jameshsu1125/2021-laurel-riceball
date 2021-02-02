@@ -4,6 +4,8 @@ import './main.less';
 import $ from 'jquery';
 require('jquery-easing');
 
+import Gtag from 'lesca-gtag';
+
 export default class popup extends React.Component {
 	constructor(props) {
 		super(props);
@@ -53,6 +55,7 @@ export default class popup extends React.Component {
 				evt() {
 					Click.add('.ticket', () => {
 						root.props.ticket();
+						Gtag.event(root.props.root_name, '點我看最萌圓動力');
 					});
 				},
 			},

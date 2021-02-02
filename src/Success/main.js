@@ -11,6 +11,7 @@ import EnterFrame from 'lesca-enterframe';
 import Loading from 'lesca-react-loading';
 import Success from './success';
 import Hash from 'lesca-url-parameters';
+import Gtag from 'lesca-gtag';
 
 import $ from 'jquery';
 require('jquery-easing');
@@ -22,13 +23,13 @@ export default class main extends React.Component {
 		const root = this;
 
 		this.data = JSON.parse(unescape(decodeURIComponent(atob(Hash.get('data').split('#')[0].split('%3D').join('')))));
-
 		this.state = { loading: true, success: true, ticket: true };
 		// ? this.image = '';
 		//console.log(this.data);
 
 		Click.init();
 		EnterFrame.init();
+		Gtag.install('G-8XXTGCKBGT');
 
 		this.tr = {
 			init() {

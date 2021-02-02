@@ -6,6 +6,7 @@ import Balloons from './balloons';
 
 import EnterFrame from 'lesca-enterframe';
 import Halo from './halo';
+import Gtag from 'lesca-gtag';
 
 import $ from 'jquery';
 require('jquery-easing');
@@ -85,6 +86,7 @@ export default class main extends React.Component {
 					Click.add('.home-btn', () => {
 						Click.remove('.home-btn');
 						root.tr.out();
+						Gtag.event('首頁', '製作湯圓天燈');
 					});
 				},
 			},
@@ -125,6 +127,7 @@ export default class main extends React.Component {
 		this.refs.halo.in();
 		this.refs.balloons.in();
 		this.refs.balloon.in();
+		Gtag.pv('首頁');
 	}
 
 	componentWillUnmount() {

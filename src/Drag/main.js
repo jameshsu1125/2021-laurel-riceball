@@ -3,6 +3,7 @@ import './main.less';
 import Canvas from './canvas';
 
 import Demo from './demo';
+import Gtag from 'lesca-gtag';
 
 import $ from 'jquery';
 require('jquery-easing');
@@ -165,6 +166,7 @@ export default class main extends React.Component {
 							root.tr.out();
 							let e = root.refs.canvas.capture();
 							root.props.capture(e);
+							Gtag.event('手寫頁', '升起天燈');
 						} else {
 							alert('是不是應該寫點什麼?');
 						}
@@ -221,6 +223,7 @@ export default class main extends React.Component {
 				evt() {
 					Click.add('.btn-reset', () => {
 						root.refs.canvas.reset();
+						Gtag.event('手寫頁', '重寫');
 					});
 				},
 			},
@@ -279,6 +282,7 @@ export default class main extends React.Component {
 
 	in() {
 		this.tr.in();
+		Gtag.pv('手寫頁');
 	}
 
 	demo_end() {

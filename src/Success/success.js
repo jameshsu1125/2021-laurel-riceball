@@ -5,7 +5,7 @@ import Halo from './../Component/halo/main';
 import Lantern from './../Component/lantern/main';
 import Balloon from './../Component/balloon/main';
 import Popup from './../Component/popup/main';
-
+import Gtag from 'lesca-gtag';
 import Hash from 'lesca-url-parameters';
 
 import $ from 'jquery';
@@ -85,6 +85,7 @@ export default class success extends React.Component {
 						setTimeout(() => {
 							window.location.href = Hash.root();
 						}, 300);
+						Gtag.event('UGC頁', '自己做一個');
 					});
 				},
 			},
@@ -97,6 +98,7 @@ export default class success extends React.Component {
 
 	in() {
 		this.tr.in();
+		Gtag.pv('UGC頁');
 	}
 
 	render() {
@@ -106,7 +108,7 @@ export default class success extends React.Component {
 					<Halo ref='halo' />
 					<Lantern ref='balloons' />
 					<Balloon ref='balloon' image={this.props.data.image || ''} index={this.props.data.i} />
-					<Popup ref='popup' ticket={this.props.ticket} />
+					<Popup ref='popup' root_name={'UGC頁'} ticket={this.props.ticket} />
 					<div ref='btn' className='btn'></div>
 				</div>
 			</div>

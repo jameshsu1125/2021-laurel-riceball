@@ -1,5 +1,5 @@
 module.exports = {
-	begin_component: 'home',
+	begin_component: 'result',
 	show_puipui: require('lesca-url-parameters').default.get('puipui') == 'no' ? false : true,
 	ticket: function (data) {
 		console.log(data);

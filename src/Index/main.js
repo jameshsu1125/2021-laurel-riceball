@@ -15,6 +15,7 @@ import Ticket from './../Component/ticket/main';
 import Click from 'lesca-click';
 import Loading from 'lesca-react-loading';
 import FB from 'lesca-facebook-share';
+import Gtag from 'lesca-gtag';
 
 import $ from 'jquery';
 require('jquery-easing');
@@ -26,6 +27,7 @@ export default class index extends React.Component {
 
 		const root = this;
 		FB.install('171368189560011', {});
+		Gtag.install('G-8XXTGCKBGT');
 
 		this.state = { loading: true, home: true, select: true, drag: true, result: true, ticket: true };
 

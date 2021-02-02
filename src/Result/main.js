@@ -10,6 +10,7 @@ import Balloons from './../Component/lantern/main';
 import Halo from '../Component/halo/main';
 import Get from 'lesca-url-parameters';
 import Popup from './../Component/popup/main';
+import Gtag from 'lesca-gtag';
 
 export default class main extends React.Component {
 	constructor(props) {
@@ -95,6 +96,8 @@ export default class main extends React.Component {
 						} else {
 							root.props.add_loading();
 
+							Gtag.event('結果頁', '分享');
+
 							let data = {
 								image: root.props.image,
 								to: root.refs.balloon.tr.canvas.catch(),
@@ -103,7 +106,9 @@ export default class main extends React.Component {
 							require('./../_config')
 								.share(data)
 								.then((e) => {
-									//root.props.destory_loading();
+									setTimeout(() => {
+										root.props.destory_loading();
+									}, 1000);
 									let data = {
 										to: encodeURIComponent(escape(txt)),
 										puipui: require('./../_config').show_puipui,
@@ -169,6 +174,7 @@ export default class main extends React.Component {
 						setTimeout(() => {
 							window.location.reload();
 						}, 300);
+						Gtag.event('結果頁', '再做一盞');
 					});
 				},
 			},
@@ -211,8 +217,13 @@ export default class main extends React.Component {
 	}
 
 	in() {
-		this.tr.in();
+		$(this.refs.main).waitForImages({
+			finished: () => this.tr.in(),
+			each: (e) => {},
+			waitForAll: true,
+		});
 		EnterFrame.go = true;
+		Gtag.pv('結果頁');
 	}
 
 	txt_change(e) {
@@ -232,7 +243,7 @@ export default class main extends React.Component {
 							<input ref='input' onChange={this.txt_change.bind(this)} type='text' maxLength='4'></input>
 						</div>
 					</div>
-					<Popup ref='popup' ticket={this.props.ticket} />
+					<Popup ref='popup' root_name={'結果頁'} ticket={this.props.ticket} />
 					<div ref='again' className='btn-again'></div>
 					<div ref='share' className='btn-share'></div>
 				</div>

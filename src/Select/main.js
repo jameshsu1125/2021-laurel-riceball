@@ -2,6 +2,7 @@ import React from 'react';
 import './main.less';
 
 import Page from './page';
+import Gtag from 'lesca-gtag';
 
 import $ from 'jquery';
 require('jquery-easing');
@@ -122,6 +123,7 @@ export default class main extends React.Component {
 					Click.add('.select-submit', () => {
 						Click.remove('.select-submit');
 						root.refs['page' + (root.tr.slice.index + 1)].selected();
+						Gtag.event('選擇頁', `選擇第${root.tr.slice.index + 1}個天燈`);
 					});
 				},
 			},
@@ -193,6 +195,7 @@ export default class main extends React.Component {
 					this.index++;
 					if (this.index >= root.nun + 1) this.index = 0;
 					this.panto('next');
+					Gtag.event('選擇頁', '下一個天燈');
 				},
 				prev() {
 					if (!this.is) return;
@@ -200,6 +203,7 @@ export default class main extends React.Component {
 					this.index--;
 					if (this.index < -1) this.index = root.nun - 1;
 					this.panto('prev');
+					Gtag.event('選擇頁', '上一個天燈');
 				},
 				panto(direct) {
 					this.is = false;
@@ -282,6 +286,7 @@ export default class main extends React.Component {
 
 	in() {
 		this.tr.in();
+		Gtag.pv('選擇頁');
 	}
 
 	back() {

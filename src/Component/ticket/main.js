@@ -7,6 +7,8 @@ require('jquery.waitforimages');
 
 import Loader from 'lesca-react-loading';
 
+import Gtag from 'lesca-gtag';
+
 export default class ticket extends React.Component {
 	constructor(props) {
 		super(props);
@@ -37,7 +39,10 @@ export default class ticket extends React.Component {
 				this.agree.evt();
 				this.submit.evt();
 				Click.add('.submited-btn', () => {
-					window.open('https://google.com');
+					setTimeout(() => {
+						window.open('https://google.com');
+					}, 300);
+					Gtag.event('報名頁', '點我看更多活動詳情');
 				});
 			},
 			flip() {
@@ -82,11 +87,14 @@ export default class ticket extends React.Component {
 
 					root.setState({ loader: true });
 
+					Gtag.event('報名頁', '送出');
+
 					require('./../../_config')
 						.ticket(data)
 						.then((e) => {
 							root.setState({ loader: false });
 							root.tr.flip();
+							if (fbq) fbq('track', 'CompleteRegistration');
 						});
 				},
 			},
@@ -287,6 +295,9 @@ export default class ticket extends React.Component {
 
 	in() {
 		this.tr.in();
+		setTimeout(() => {
+			Gtag.pv('報名頁');
+		}, 100);
 	}
 
 	append_content() {
