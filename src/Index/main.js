@@ -24,17 +24,15 @@ require('jquery.waitforimages');
 export default class index extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = { loading: true, home: true, select: true, drag: true, result: true, ticket: true };
 
 		const root = this;
 		FB.install('171368189560011', {});
 		Gtag.install('G-8XXTGCKBGT');
-
-		this.state = { loading: true, home: true, select: true, drag: true, result: true, ticket: true };
+		Click.init();
 
 		this.drag_index = 1;
-		this.img = location.hostname === 'localhost' ? require('./fakeimage').img : '';
-
-		Click.init();
+		this.img = location.hostname === 'localhost' ? require('./fake_image').img : '';
 
 		this.tr = {
 			init() {
@@ -60,7 +58,6 @@ export default class index extends React.Component {
 					let mh = 1333,
 						h = window.innerHeight,
 						s = h / mh;
-
 					this.s = s > 1 ? 1 : s;
 					this.tran();
 				},

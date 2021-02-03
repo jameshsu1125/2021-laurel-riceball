@@ -125,7 +125,7 @@ export default class balloon extends React.Component {
 		return (
 			<div ref='balloon' id='main_balloon'>
 				<div className={'ball b' + this.props.index}></div>
-				<div className='draw' style={{ backgroundImage: `url(${this.props.image || require('./../../Index/fakeimage').img})` }}></div>
+				<div className='draw' style={{ backgroundImage: `url(${this.props.image || require('./../../Index/fake_image').img})` }}></div>
 				<div ref='puipui' className={'puipui p' + this.props.index}></div>
 				<div className='canvas_txt'>
 					<canvas ref='canvas' width='130' height='120'></canvas>

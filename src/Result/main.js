@@ -98,7 +98,7 @@ export default class main extends React.Component {
 
 							Gtag.event('結果頁', '分享');
 							let fb_share_cagegory = ['花生天燈', '芝麻天燈', '鮮肉天燈', '流沙天燈', '抹茶天燈'];
-							if (fbq) fbq('trackCustom', `天燈分享`, { type: fb_share_cagegory[this.props.index] });
+							if (fbq) fbq('trackCustom', `天燈分享`, { type: fb_share_cagegory[root.props.index] });
 
 							let data = {
 								image: root.props.image,
