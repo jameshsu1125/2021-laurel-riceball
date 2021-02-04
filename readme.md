@@ -19,5 +19,5 @@ $ npm start
 ### output to /dist
 
 ```
-$ npm run op
+$ npm run build
 ```
