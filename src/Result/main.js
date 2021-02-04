@@ -101,27 +101,34 @@ export default class main extends React.Component {
 							if (fbq) fbq('trackCustom', `天燈分享`, { type: fb_share_cagegory[root.props.index] });
 
 							let data = {
-								image: root.props.image,
-								to: root.refs.balloon.tr.canvas.catch(),
+								base64_1: root.props.image,
+								base64_2: root.refs.balloon.tr.canvas.catch(),
+								to_name: root.refs.input.value,
+								type: root.props.index,
 							};
 
 							require('./../_config')
 								.share(data)
-								.then((e) => {
-									setTimeout(() => {
-										root.props.destory_loading();
-									}, 1000);
-									let data = {
-										to: encodeURIComponent(escape(txt)),
-										puipui: require('./../_config').show_puipui,
-										i: root.props.index,
-									};
-									let u = window.location.hostname === 'localhost' ? 'https://google.com' : Get.root() + `success.html?data=${btoa(JSON.stringify(data))}`;
-									root.props.FB.share({
-										url: u,
-										redirect_uri: Get.root() + `success.html?data=${btoa(JSON.stringify(data))}`,
-									});
-								});
+								.then(
+									(e) => {
+										setTimeout(() => {
+											root.props.destory_loading();
+										}, 1000);
+										let data = {
+											ev_id: encodeURIComponent(escape(e.ev_id || '')),
+											puipui: require('./../_config').show_puipui,
+										};
+										let u = require('./../_config').api_path + `fbshare?ev_id=${e.ev_id}&data=${btoa(JSON.stringify(data))}`;
+										root.props.FB.share({
+											url: u,
+											redirect_uri: Get.root() + `success.html?data=${btoa(JSON.stringify(data))}`,
+										});
+									},
+									(e) => {
+										alert(e.msg);
+										window.location.replace(Hash.root());
+									}
+								);
 						}
 					});
 				},

@@ -23,9 +23,7 @@ export default class main extends React.Component {
 		const root = this;
 
 		this.data = JSON.parse(unescape(decodeURIComponent(atob(Hash.get('data').split('#')[0].split('%3D').join('')))));
-		this.state = { loading: true, success: true, ticket: true };
-		// ? this.image = '';
-		//console.log(this.data);
+		this.state = { loading: true, success: false, ticket: false };
 
 		Click.init();
 		EnterFrame.init();
@@ -35,7 +33,7 @@ export default class main extends React.Component {
 			init() {
 				this.ctx.init();
 			},
-			in() {
+			in(e) {
 				let c = location.hostname === 'localhost' ? 'success' : 'success';
 				let o = { ...root.state };
 				delete o[c];
@@ -76,10 +74,27 @@ export default class main extends React.Component {
 
 	componentDidMount() {
 		this.tr.init();
-		$(this.refs.main).waitForImages({
-			finished: () => this.tr.in(),
-			waitForAll: true,
-		});
+
+		require('./../_config')
+			.get(this.data)
+			.then(
+				(e) => {
+					this.image = e.base64_1;
+					this.data = Object.assign(this.data, e);
+					console.log(this.data);
+
+					this.setState({ loading: true, success: true, ticket: true }, () => {
+						$(this.refs.main).waitForImages({
+							finished: () => this.tr.in(),
+							waitForAll: true,
+						});
+					});
+				},
+				(e) => {
+					alert(e.msg);
+					window.location.replace(Hash.root());
+				}
+			);
 	}
 
 	append_loading() {

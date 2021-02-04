@@ -16,6 +16,7 @@ import Click from 'lesca-click';
 import Loading from 'lesca-react-loading';
 import FB from 'lesca-facebook-share';
 import Gtag from 'lesca-gtag';
+import Http2https from 'lesca-http2https';
 
 import $ from 'jquery';
 require('jquery-easing');
@@ -30,6 +31,7 @@ export default class index extends React.Component {
 		FB.install('171368189560011', {});
 		Gtag.install('G-8XXTGCKBGT');
 		Click.init();
+		Http2https.go();
 
 		this.drag_index = 1;
 		this.img = location.hostname === 'localhost' ? require('./fake_image').img : '';

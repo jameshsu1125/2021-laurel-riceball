@@ -19,7 +19,7 @@ export default class success extends React.Component {
 		this.tr = {
 			init() {
 				this.btn.init();
-				root.refs.balloon.update(root.props.data.to);
+				root.refs.balloon.update(root.props.data.to_name);
 			},
 			in() {
 				root.refs.main.style.display = 'block';
@@ -108,7 +108,7 @@ export default class success extends React.Component {
 				<div className='container'>
 					<Halo ref='halo' />
 					<Lantern ref='balloons' />
-					<Balloon ref='balloon' image={this.props.data.image || ''} index={this.props.data.i} />
+					<Balloon ref='balloon' image={this.props.data.base64_1 || ''} index={this.props.data.type} />
 					<Popup ref='popup' root_name={'UGC頁'} ticket={this.props.ticket} />
 					<div ref='btn' className='btn'></div>
 				</div>

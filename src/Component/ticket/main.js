@@ -91,11 +91,17 @@ export default class ticket extends React.Component {
 
 					require('./../../_config')
 						.ticket(data)
-						.then((e) => {
-							root.setState({ loader: false });
-							root.tr.flip();
-							if (fbq) fbq('track', 'CompleteRegistration');
-						});
+						.then(
+							(e) => {
+								root.setState({ loader: false });
+								root.tr.flip();
+								if (fbq) fbq('track', 'CompleteRegistration');
+							},
+							(e) => {
+								alert(e.msg);
+								root.setState({ loader: false });
+							}
+						);
 				},
 			},
 			agree: {

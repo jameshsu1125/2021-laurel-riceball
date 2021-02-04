@@ -62,6 +62,7 @@
 		"lesca-enterframe": "^1.0.1",
 		"lesca-facebook-share": "^1.0.1",
 		"lesca-gtag": "^1.0.1",
+		"lesca-http2https": "^1.0.5",
 		"lesca-react-loading": "^1.0.0",
 		"lesca-url-parameters": "^1.0.0",
 		"mouse-wheel": "^1.2.0",
