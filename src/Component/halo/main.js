@@ -1,5 +1,7 @@
 import React from 'react';
-import $, { timers } from 'jquery';
+import './main.less';
+
+import $ from 'jquery';
 require('jquery-easing');
 
 export default class halo extends React.Component {

@@ -1,9 +1,9 @@
 const $ = require('jquery');
 
 module.exports = {
-	begin_component: 'home',
-	show_puipui: require('lesca-url-parameters').default.get('puipui') == 'no' ? false : true,
-	api_path: 'http://demo2.sp88.com.tw/james/laurel_202102/',
+	begin_component: 'select',
+	show_puipui: false,
+	api_path: 'https://demo.sp88.com.tw/james/laurel_202102/',
 	ticket: function (data) {
 		return new Promise((res, rej) => {
 			let api = `api/save_info`;
