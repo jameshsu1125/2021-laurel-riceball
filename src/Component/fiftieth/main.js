@@ -9,7 +9,7 @@ export default class main extends React.Component {
 	constructor(props) {
 		super(props);
 		const root = this;
-		//script
+
 		this.tr = {
 			init() {
 				this.c = $(root.refs.main);
@@ -45,14 +45,6 @@ export default class main extends React.Component {
 			each: (e) => {},
 			waitForAll: true,
 		});
-	}
-
-	componentDidUpdate() {
-		//script
-	}
-
-	componentWillUnmount() {
-		//script
 	}
 
 	render() {

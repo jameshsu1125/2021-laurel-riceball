@@ -81,8 +81,7 @@ export default class main extends React.Component {
 				(e) => {
 					this.image = e.base64_1;
 					this.data = Object.assign(this.data, e);
-					console.log(this.data);
-
+					//console.log(this.data);
 					this.setState({ loading: true, success: true, ticket: true }, () => {
 						$(this.refs.main).waitForImages({
 							finished: () => this.tr.in(),

@@ -13,7 +13,7 @@ import Result from './../Result/main';
 import Ticket from './../Component/ticket/main';
 
 import Click from 'lesca-click';
-import Loading from 'lesca-react-loading';
+import Loading from './../Component/loading/main';
 import FB from 'lesca-facebook-share';
 import Gtag from 'lesca-gtag';
 import Http2https from 'lesca-http2https';
@@ -198,10 +198,10 @@ export default class index extends React.Component {
 					{this.append_result()}
 				</div>
 				{this.append_back()}
-				{this.append_loading()}
 				<Logo />
 				<Fiftieth />
 				{this.append_ticket()}
+				{this.append_loading()}
 			</div>
 		);
 	}

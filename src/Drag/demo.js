@@ -110,14 +110,6 @@ export default class demo extends React.Component {
 		});
 	}
 
-	componentDidUpdate() {
-		//script
-	}
-
-	componentWillUnmount() {
-		//script
-	}
-
 	render() {
 		return (
 			<div ref='main' id='demo'>

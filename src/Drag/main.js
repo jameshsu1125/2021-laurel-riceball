@@ -285,9 +285,16 @@ export default class main extends React.Component {
 		Gtag.pv('手寫頁');
 
 		if (fbq) fbq('trackCustom', '手寫頁', { path: '手寫頁' });
+
+		setTimeout(() => {
+			Click.ex_down = () => {
+				this.demo_end();
+			};
+		}, 1500);
 	}
 
 	demo_end() {
+		Click.ex_down = () => {};
 		this.setState({ demo: false }, () => {
 			this.refs.canvas.start();
 			this.tr.reset.in();

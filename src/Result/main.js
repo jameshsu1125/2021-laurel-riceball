@@ -119,9 +119,17 @@ export default class main extends React.Component {
 											puipui: require('./../_config').show_puipui,
 										};
 										let u = require('./../_config').api_path + `fbshare?ev_id=${e.ev_id}&data=${btoa(JSON.stringify(data))}`;
+										let quote = [
+											`${root.refs.input.value}，2021元宵節，願你身體健康有活力，從一碗芝麻湯圓開始。`,
+											`${root.refs.input.value}，2021元宵節，願你好事花生一整年，從一碗花生湯圓開始。`,
+											`${root.refs.input.value}，2021元宵節，願你的愛情常保鮮，從一碗鮮肉湯圓開始。`,
+											`${root.refs.input.value}，2021元宵節，願你一年滿盈黃金財，從吃一碗流沙湯圓開始。`,
+											`${root.refs.input.value}，2021元宵節，願你的努力回甘，從吃一碗抹茶湯圓開始。`,
+										];
 										root.props.FB.share({
 											url: u,
 											redirect_uri: Get.root() + `success.html?data=${btoa(JSON.stringify(data))}`,
+											quote: quote[root.props.index],
 										});
 									},
 									(e) => {

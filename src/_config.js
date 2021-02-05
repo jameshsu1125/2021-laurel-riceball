@@ -1,7 +1,7 @@
 const $ = require('jquery');
 
 module.exports = {
-	begin_component: 'select',
+	begin_component: 'home',
 	show_puipui: false,
 	api_path: 'https://demo.sp88.com.tw/james/laurel_202102/',
 	ticket: function (data) {
