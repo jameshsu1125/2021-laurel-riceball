@@ -314,6 +314,7 @@ export default class main extends React.Component {
 					<div ref='slice' className='slice'>
 						{this.append_page()}
 					</div>
+					<div ref='title' className='title'></div>
 					<div ref='slider' className='select-slider'></div>
 					<div ref='submit' className='select-submit'></div>
 					<div className='select-arrows'>

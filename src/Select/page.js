@@ -14,7 +14,7 @@ export default class page extends React.Component {
 				this.c = $(root.refs.main);
 				this.c.css('visibility', 'hidden');
 
-				this.title.init();
+				//this.title.init();
 				this.carving.init();
 				this.riceball.init();
 
@@ -23,120 +23,41 @@ export default class page extends React.Component {
 			},
 			in() {
 				this.c.css('visibility', 'visible');
-				this.title.in();
+				//this.title.in();
 				this.carving.in();
 				this.riceball.in();
 			},
 			show() {
 				this.c.css('visibility', 'visible');
-				this.title.show();
+				//this.title.show();
 				this.carving.show();
 				this.riceball.show();
 			},
 			hide() {
 				this.c.css('visibility', 'hidden');
-				this.title.hide();
+				//this.title.hide();
 				this.carving.hide();
 				this.riceball.hide();
 			},
 			fadein(direct) {
 				this.c.css('visibility', 'visible');
-				this.title.fadein(direct);
+				//this.title.fadein(direct);
 				this.carving.fadein(direct);
 				this.riceball.fadein(direct);
 			},
 			fadeout(direct) {
-				this.title.fadeout(direct);
+				//this.title.fadeout(direct);
 				this.carving.fadeout(direct);
 				this.riceball.fadeout(direct);
 			},
 			offset(dx) {
-				this.title.offset(dx);
+				//this.title.offset(dx);
 				this.carving.offset(dx);
 			},
 			selected() {
 				this.riceball.selected();
 			},
-			title: {
-				l: 100,
-				o: 0,
-				time: 800,
-				delay: 0,
-				init() {
-					this.c = $(root.refs.title);
-					this.tran();
-				},
-				in() {
-					$(this)
-						.delay(this.delay)
-						.animate(
-							{ l: 0, o: 1 },
-							{
-								duration: this.time,
-								step: () => this.tran(),
-								complete: () => this.tran(),
-								easing: 'easeOutQuart',
-							}
-						);
-				},
-				fadein(direct) {
-					if (direct === 'next') this.l = 300;
-					else this.l = -300;
-					this.o = 0;
-					this.tran();
-
-					$(this)
-						.delay(this.delay)
-						.animate(
-							{ o: 1, l: 0 },
-							{
-								duration: this.time,
-								step: () => this.tran(),
-								complete: () => this.tran(),
-								easing: 'easeOutQuart',
-							}
-						);
-				},
-				fadeout(direct) {
-					this.o = 1;
-					this.tran();
-
-					$(this)
-						.delay(this.delay)
-						.animate(
-							{ o: 0, l: direct == 'next' ? -500 : 500 },
-							{
-								duration: this.time,
-								step: () => this.tran(),
-								complete: () => {
-									this.tran();
-									root.tr.hide();
-								},
-								easing: 'easeOutQuart',
-							}
-						);
-				},
-				offset(dx) {
-					this.l = dx * -1;
-					this.tran();
-				},
-				show() {
-					this.l = 0;
-					this.o = 1;
-					this.tran();
-				},
-				hide() {
-					this.l = 0;
-					this.o = 0;
-					this.tran();
-				},
-				tran() {
-					this.c.css({
-						left: this.l + 'px',
-						opacity: this.o,
-					});
-				},
-			},
+			//title: { l: 100, o: 0, time: 800, delay: 0, init() { this.c = $(root.refs.title); this.tran(); }, in() { $(this) .delay(this.delay) .animate( { l: 0, o: 1 }, { duration: this.time, step: () => this.tran(), complete: () => this.tran(), easing: 'easeOutQuart', } ); }, fadein(direct) { if (direct === 'next') this.l = 300; else this.l = -300; this.o = 0; this.tran(); $(this) .delay(this.delay) .animate( { o: 1, l: 0 }, { duration: this.time, step: () => this.tran(), complete: () => this.tran(), easing: 'easeOutQuart', } ); }, fadeout(direct) { this.o = 1; this.tran(); $(this) .delay(this.delay) .animate( { o: 0, l: direct == 'next' ? -500 : 500 }, { duration: this.time, step: () => this.tran(), complete: () => { this.tran(); root.tr.hide(); }, easing: 'easeOutQuart', } ); }, offset(dx) { this.l = dx * -1; this.tran(); }, show() { this.l = 0; this.o = 1; this.tran(); }, hide() { this.l = 0; this.o = 0; this.tran(); }, tran() { this.c.css({ left: this.l + 'px', opacity: this.o, }); }, },
 			carving: {
 				l: 100,
 				o: 0,
@@ -356,7 +277,6 @@ export default class page extends React.Component {
 		return (
 			<div ref='main' className='page'>
 				<div className='container'>
-					<div ref='title' className='title'></div>
 					<div ref='carving' className='carving'>
 						<div className='key'></div>
 						<div className='name'></div>

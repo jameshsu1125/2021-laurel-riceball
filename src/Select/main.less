@@ -27,6 +27,17 @@
 			left: 0%;
 			margin-left: -100%;
 		}
+
+		.title {
+			position: absolute;
+			@img: './img/title.png';
+			background-image: url(@img);
+			width: image-width(@img);
+			height: image-height(@img);
+			left: 50%;
+			margin-left: 0 - image-width(@img) * 0.5;
+			margin-top: -65px;
+		}
 	}
 
 	.select-submit {
