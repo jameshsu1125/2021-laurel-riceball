@@ -9,7 +9,7 @@ import Balloon from './../Component/balloon/main';
 import Balloons from './../Component/lantern/main';
 import Halo from '../Component/halo/main';
 import Get from 'lesca-url-parameters';
-import Popup from './../Component/popup/main';
+//import Popup from './../Component/popup/main';
 import Gtag from 'lesca-gtag';
 
 export default class main extends React.Component {
@@ -28,7 +28,7 @@ export default class main extends React.Component {
 				root.refs.balloon.in();
 				root.refs.balloons.in();
 				root.refs.halo.in();
-				root.refs.popup.in();
+				//root.refs.popup.in();
 
 				this.target.in();
 				this.again.in();
@@ -116,7 +116,6 @@ export default class main extends React.Component {
 										}, 1000);
 										let data = {
 											ev_id: encodeURIComponent(escape(e.ev_id || '')),
-											puipui: require('./../_config').show_puipui,
 										};
 										let u = require('./../_config').api_path + `fbshare?ev_id=${e.ev_id}&data=${btoa(JSON.stringify(data))}`;
 										let quote = [
@@ -261,7 +260,7 @@ export default class main extends React.Component {
 							<input ref='input' onChange={this.txt_change.bind(this)} type='text' maxLength='4'></input>
 						</div>
 					</div>
-					<Popup ref='popup' root_name={'結果頁'} ticket={this.props.ticket} />
+					{/* <Popup ref='popup' root_name={'結果頁'} ticket={this.props.ticket} /> */}
 					<div ref='again' className='btn-again'></div>
 					<div ref='share' className='btn-share'></div>
 				</div>

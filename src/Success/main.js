@@ -8,7 +8,7 @@ import Ticket from './../Component/ticket/main';
 
 import Click from 'lesca-click';
 import EnterFrame from 'lesca-enterframe';
-import Loading from 'lesca-react-loading';
+import Loading from './../Component/loading/main';
 import Success from './success';
 import Hash from 'lesca-url-parameters';
 import Gtag from 'lesca-gtag';
