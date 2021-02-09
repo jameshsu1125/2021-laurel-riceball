@@ -1,9 +1,10 @@
 const $ = require('jquery');
 
 module.exports = {
-	begin_component: 'result',
+	begin_component: 'select',
 	show_puipui: false,
-	api_path: 'https://demo.sp88.com.tw/james/laurel_202102/',
+	//api_path: 'https://demo.sp88.com.tw/james/laurel_202102/',
+	api_path: location.hostname === 'localhost' || location.hostname == 'jameshsu1125.github.io' ? 'https://demo.sp88.com.tw/james/laurel_202102/' : 'https://laurel-riceball.com.tw/',
 	ticket: function (data) {
 		return new Promise((res, rej) => {
 			let api = `api/save_info`;

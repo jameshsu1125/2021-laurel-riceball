@@ -236,11 +236,16 @@ export default class main extends React.Component {
 	}
 
 	in() {
-		$(this.refs.main).waitForImages({
-			finished: () => this.tr.in(),
-			each: (e) => {},
-			waitForAll: true,
-		});
+		let loader = new Image();
+		loader.onload = () => {
+			$(this.refs.main).waitForImages({
+				finished: () => this.tr.in(),
+				each: (e) => {},
+				waitForAll: true,
+			});
+		};
+
+		loader.src = this.props.image;
 		EnterFrame.go = true;
 		Gtag.pv('結果頁');
 		if (fbq) fbq('trackCustom', '結果頁', { path: '結果頁' });
