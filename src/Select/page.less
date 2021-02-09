@@ -11,6 +11,9 @@
 				&:nth-child(1) {
 					.container {
 						.carving {
+							.symbol {
+								background-color: #cdecba;
+							}
 							.key {
 								@img: './img/keyword-5.svg';
 								background-image: url(@img);
@@ -54,6 +57,9 @@
 				&:nth-child(2) {
 					.container {
 						.carving {
+							.symbol {
+								background-color: #edd2f4;
+							}
 							.key {
 								@img: './img/keyword-1.svg';
 								background-image: url(@img);
@@ -97,6 +103,9 @@
 				&:nth-child(3) {
 					.container {
 						.carving {
+							.symbol {
+								background-color: #ecddc7;
+							}
 							.key {
 								@img: './img/keyword-2.svg';
 								background-image: url(@img);
@@ -140,6 +149,9 @@
 				&:nth-child(4) {
 					.container {
 						.carving {
+							.symbol {
+								background-color: #ecddc7;
+							}
 							.key {
 								@img: './img/keyword-3.svg';
 								background-image: url(@img);
@@ -183,6 +195,9 @@
 				&:nth-child(5) {
 					.container {
 						.carving {
+							.symbol {
+								background-color: #fff6b0;
+							}
 							.key {
 								@img: './img/keyword-4.svg';
 								background-image: url(@img);
@@ -226,6 +241,9 @@
 				&:nth-child(6) {
 					.container {
 						.carving {
+							.symbol {
+								background-color: #cdecba;
+							}
 							.key {
 								@img: './img/keyword-5.svg';
 								background-image: url(@img);
@@ -269,6 +287,9 @@
 				&:nth-child(7) {
 					.container {
 						.carving {
+							.symbol {
+								background-color: #edd2f4;
+							}
 							.key {
 								@img: './img/keyword-1.svg';
 								background-image: url(@img);
@@ -318,18 +339,25 @@
 						position: absolute;
 					}
 
+					@img: './img/carving.svg';
 					.carving {
 						@size: 0.69;
-						@img: './img/carving.svg';
-						background-image: url(@img);
+
 						width: image-width(@img) * @size;
 						height: image-height(@img) * @size;
 						margin-left: 0 - image-width(@img) * @size * 0.5;
 						margin-top: 0 - image-height(@img) * @size* 0.5 - 290px;
-						background-size: 100%;
 
 						& > div {
 							position: absolute;
+						}
+
+						.symbol {
+							//background-image: url(@img);
+							mask-image: url(@img);
+							width: 100%;
+							height: 100%;
+							mask-size: 100%;
 						}
 
 						.key {

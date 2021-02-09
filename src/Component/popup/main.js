@@ -54,8 +54,11 @@ export default class popup extends React.Component {
 				},
 				evt() {
 					Click.add('.ticket', () => {
-						root.props.ticket();
-						Gtag.event(root.props.root_name, '點我看最萌圓動力');
+						//root.props.ticket();
+						Gtag.event(root.props.root_name, '抽珐瑯鐵鑄鍋');
+						setTimeout(() => {
+							window.location.href = '#';
+						}, 300);
 					});
 				},
 			},
@@ -73,7 +76,11 @@ export default class popup extends React.Component {
 	render() {
 		return (
 			<div ref='popup' id='popup'>
-				<div className='ticket'></div>
+				<div className='wave'>
+					<div></div>
+					<div></div>
+				</div>
+				<div className='hand'></div>
 				<div className='ticket'></div>
 			</div>
 		);

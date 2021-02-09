@@ -278,6 +278,7 @@ export default class page extends React.Component {
 			<div ref='main' className='page'>
 				<div className='container'>
 					<div ref='carving' className='carving'>
+						<div className='symbol'></div>
 						<div className='key'></div>
 						<div className='name'></div>
 						<div className='description'></div>

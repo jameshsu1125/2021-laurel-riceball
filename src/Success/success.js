@@ -4,7 +4,7 @@ import './success.less';
 import Halo from './../Component/halo/main';
 import Lantern from './../Component/lantern/main';
 import Balloon from './../Component/balloon/main';
-//import Popup from './../Component/popup/main';
+import Popup from './../Component/popup/main';
 import Gtag from 'lesca-gtag';
 import Hash from 'lesca-url-parameters';
 
@@ -27,7 +27,7 @@ export default class success extends React.Component {
 				root.refs.balloon.in();
 				root.refs.balloons.in();
 				root.refs.halo.in();
-				//root.refs.popup.in();
+				root.refs.popup.in();
 
 				root.refs.balloon.visible_puipui(root.props.data.puipui);
 
@@ -109,7 +109,7 @@ export default class success extends React.Component {
 					<Halo ref='halo' />
 					<Lantern ref='balloons' />
 					<Balloon ref='balloon' image={this.props.data.base64_1 || ''} index={this.props.data.type} />
-					{/* <Popup ref='popup' root_name={'UGC頁'} ticket={this.props.ticket} /> */}
+					<Popup ref='popup' root_name={'UGC頁'} ticket={this.props.ticket} />
 					<div ref='btn' className='btn'></div>
 				</div>
 			</div>

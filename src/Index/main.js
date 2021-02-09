@@ -33,7 +33,7 @@ export default class index extends React.Component {
 		Click.init();
 		Http2https.go();
 
-		this.drag_index = 1;
+		this.drag_index = 5;
 		this.img = location.hostname === 'localhost' ? require('./fake_image').img : '';
 
 		this.tr = {

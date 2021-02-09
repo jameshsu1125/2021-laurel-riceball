@@ -9,7 +9,7 @@ import Balloon from './../Component/balloon/main';
 import Balloons from './../Component/lantern/main';
 import Halo from '../Component/halo/main';
 import Get from 'lesca-url-parameters';
-//import Popup from './../Component/popup/main';
+import Popup from './../Component/popup/main';
 import Gtag from 'lesca-gtag';
 
 export default class main extends React.Component {
@@ -28,7 +28,7 @@ export default class main extends React.Component {
 				root.refs.balloon.in();
 				root.refs.balloons.in();
 				root.refs.halo.in();
-				//root.refs.popup.in();
+				root.refs.popup.in();
 
 				this.target.in();
 				this.again.in();
@@ -88,6 +88,7 @@ export default class main extends React.Component {
 				},
 				evt() {
 					Click.add('.btn-share', () => {
+						root.txt_check({ target: root.refs.input });
 						let txt = root.refs.balloon.tr.canvas.txt;
 						if (txt === '') {
 							alert('請輸入祈願對象');
@@ -113,7 +114,7 @@ export default class main extends React.Component {
 									(e) => {
 										setTimeout(() => {
 											root.props.destory_loading();
-										}, 1000);
+										}, 5000);
 										let data = {
 											ev_id: encodeURIComponent(escape(e.ev_id || '')),
 										};
@@ -125,10 +126,12 @@ export default class main extends React.Component {
 											`${root.refs.input.value}，2021元宵節，願你一年滿盈黃金財，從吃一碗流沙湯圓開始。`,
 											`${root.refs.input.value}，2021元宵節，願你的努力回甘，從吃一碗抹茶湯圓開始。`,
 										];
+
 										root.props.FB.share({
 											url: u,
 											redirect_uri: Get.root() + `success.html?data=${btoa(JSON.stringify(data))}`,
-											quote: quote[root.props.index],
+											quote: quote[root.props.index - 1],
+											hashtag: '宜吃桂冠湯圓新願圓',
 										});
 									},
 									(e) => {
@@ -241,10 +244,47 @@ export default class main extends React.Component {
 		EnterFrame.go = true;
 		Gtag.pv('結果頁');
 		if (fbq) fbq('trackCustom', '結果頁', { path: '結果頁' });
+		setTimeout(() => {
+			Click.ex_down = (e) => {
+				if (e.target.className != 'ninput') {
+					$(this.refs.input).blur();
+					this.txt_check({ target: this.refs.input });
+				}
+			};
+		}, 1500);
 	}
 
-	txt_change(e) {
+	txt_check(e) {
+		let w = e.target.value,
+			len = 0,
+			char_len = 0,
+			is = true;
+		for (var i = 0; i < w.length; i++) {
+			if (w.charCodeAt(i) > 255) {
+				len += 2;
+			} else {
+				len += 1;
+			}
+			if (len >= 5 && is) {
+				char_len = i + 1;
+				is = false;
+			}
+		}
+
+		if (len >= 5) {
+			e.target.value = w.substring(0, char_len);
+		}
+
 		this.refs.balloon.update(e.target.value);
+	}
+
+	removeBlur(e) {
+		$(this.refs.form).removeClass('onBlur');
+		this.txt_check(e);
+	}
+
+	addBlur(e) {
+		if (e.target.value.length == 0) $(this.refs.form).addClass('onBlur');
 	}
 
 	render() {
@@ -256,11 +296,11 @@ export default class main extends React.Component {
 					<Balloon ref='balloon' image={this.props.image} index={this.props.index} />
 					<div ref='target' className='target'>
 						<div ref='txt' className='txt'></div>
-						<div ref='form' className='form'>
-							<input ref='input' onChange={this.txt_change.bind(this)} type='text' maxLength='4'></input>
+						<div ref='form' className='form onBlur'>
+							<input className='ninput' onFocus={this.removeBlur.bind(this)} ref='input' onBlur={this.addBlur.bind(this)} type='text'></input>
 						</div>
 					</div>
-					{/* <Popup ref='popup' root_name={'結果頁'} ticket={this.props.ticket} /> */}
+					<Popup ref='popup' root_name={'結果頁'} ticket={this.props.ticket} />
 					<div ref='again' className='btn-again'></div>
 					<div ref='share' className='btn-share'></div>
 				</div>
