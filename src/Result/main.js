@@ -131,7 +131,7 @@ export default class main extends React.Component {
 											url: u,
 											redirect_uri: Get.root() + `success.html?data=${btoa(JSON.stringify(data))}`,
 											quote: quote[root.props.index - 1],
-											hashtag: '宜吃桂冠湯圓新願圓',
+											hashtag: '吃碗湯圓啟動圓動力',
 										});
 									},
 									(e) => {

@@ -29,7 +29,7 @@ export default class index extends React.Component {
 
 		const root = this;
 		FB.install('171368189560011', {});
-		Gtag.install('G-8XXTGCKBGT');
+		Gtag.install('G-Q6GV9STK3D');
 		Click.init();
 		Http2https.go();
 
