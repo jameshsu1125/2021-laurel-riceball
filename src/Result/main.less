@@ -65,7 +65,7 @@
 
 			.form {
 				float: left;
-				width: 258px;
+				width: 192px;
 				height: 100%;
 				background-color: rgba(255, 255, 255, 0.58);
 				margin-left: 20px;
@@ -78,16 +78,34 @@
 					margin: 0;
 					padding: 10px;
 					box-sizing: border-box;
-
 					font-size: 50px;
+				}
+			}
+
+			.ok {
+				position: absolute;
+				@img: './img/ok.png';
+				background-image: url(@img);
+				width: 68px;
+				height: 68px;
+				right: 0px;
+				top: 0px;
+				border: solid 1px #fff;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: 45px;
+				cursor: pointer;
+
+				&:hover {
+					background-color: rgba(81, 17, 14, 0.4);
 				}
 			}
 
 			.onBlur {
 				background-image: url('./img/default.png');
 				background-repeat: no-repeat;
-				background-position: 10px center;
-				background-size: auto 31.5%;
+				background-position: 6px center;
+				background-size: auto 31%;
 			}
 		}
 	}

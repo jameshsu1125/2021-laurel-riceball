@@ -213,7 +213,10 @@ export default class main extends React.Component {
 							{
 								duration: this.time,
 								step: () => this.tran(),
-								complete: () => this.tran(),
+								complete: () => {
+									this.tran();
+									this.evt();
+								},
 								easing: 'easeOutQuart',
 							}
 						);
@@ -221,6 +224,12 @@ export default class main extends React.Component {
 				tran() {
 					this.c.css({
 						opacity: this.o,
+					});
+				},
+				evt() {
+					Click.add('.ok', () => {
+						$(root.refs.input).blur();
+						root.txt_check({ target: root.refs.input });
 					});
 				},
 			},
@@ -304,6 +313,7 @@ export default class main extends React.Component {
 						<div ref='form' className='form onBlur'>
 							<input className='ninput' onFocus={this.removeBlur.bind(this)} ref='input' onBlur={this.addBlur.bind(this)} type='text'></input>
 						</div>
+						<div ref='ok' className='ok'></div>
 					</div>
 					<Popup ref='popup' root_name={'結果頁'} ticket={this.props.ticket} />
 					<div ref='again' className='btn-again'></div>
