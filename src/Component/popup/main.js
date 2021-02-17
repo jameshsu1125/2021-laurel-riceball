@@ -57,7 +57,7 @@ export default class popup extends React.Component {
 						//root.props.ticket();
 						Gtag.event(root.props.root_name, '抽珐瑯鐵鑄鍋');
 						setTimeout(() => {
-							window.location.href = '#';
+							window.location.href = 'https://www.facebook.com/laurel.hmr/posts/4081524425220653';
 						}, 300);
 					});
 				},
