@@ -23,6 +23,7 @@ export default class main extends React.Component {
 		const root = this;
 
 		this.data = JSON.parse(unescape(decodeURIComponent(atob(Hash.get('data').split('#')[0].split('%3D').join('')))));
+
 		this.state = { loading: true, success: false, ticket: false };
 
 		Click.init();
