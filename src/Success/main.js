@@ -22,8 +22,9 @@ export default class main extends React.Component {
 		super(props);
 		const root = this;
 
-		this.data = JSON.parse(unescape(decodeURIComponent(atob(Hash.get('data').split('#')[0].split('%3D').join('')))));
-
+		this.data = Hash.get('ev_id');
+		//this.data = JSON.parse(unescape(decodeURIComponent(atob(Hash.get('data').split('#')[0].split('%3D').join('')))));
+		//console.log(this.data);
 		this.state = { loading: true, success: false, ticket: false };
 
 		Click.init();
