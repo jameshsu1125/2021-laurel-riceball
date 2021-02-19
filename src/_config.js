@@ -42,15 +42,14 @@ module.exports = {
 	},
 	get: function (data) {
 		return new Promise((res, rej) => {
-			let api = `api/get_event?ev_id=${data}}`;
+			let api = `api/get_event?ev_id=${data.ev_id}}`;
 			$.ajax({
 				type: 'GET',
 				dataType: 'json',
 				url: this.api_path + api,
 				data: data,
 				success: function (e) {
-					console.log(e);
-					if (e.res == true) {
+					if (e.res && e.msg === 'ok') {
 						res(e);
 					} else {
 						rej(e);

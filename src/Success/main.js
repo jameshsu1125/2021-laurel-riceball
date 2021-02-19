@@ -22,9 +22,11 @@ export default class main extends React.Component {
 		super(props);
 		const root = this;
 
-		this.data = Hash.get('ev_id');
-		//this.data = JSON.parse(unescape(decodeURIComponent(atob(Hash.get('data').split('#')[0].split('%3D').join('')))));
+		if (this.data === '' || !this.data) this.data = { ev_id: Hash.get('ev_id') };
+		else this.data = JSON.parse(unescape(decodeURIComponent(atob(Hash.get('data').split('#')[0].split('%3D').join('')))));
+
 		//console.log(this.data);
+
 		this.state = { loading: true, success: false, ticket: false };
 
 		Click.init();
@@ -83,7 +85,6 @@ export default class main extends React.Component {
 				(e) => {
 					this.image = e.base64_1;
 					this.data = Object.assign(this.data, e);
-					//console.log(this.data);
 					this.setState({ loading: true, success: true, ticket: true }, () => {
 						$(this.refs.main).waitForImages({
 							finished: () => this.tr.in(),
