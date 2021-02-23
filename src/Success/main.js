@@ -22,10 +22,10 @@ export default class main extends React.Component {
 		super(props);
 		const root = this;
 
+		this.data = Hash.get('data');
+
 		if (this.data === '' || !this.data) this.data = { ev_id: Hash.get('ev_id') };
 		else this.data = JSON.parse(unescape(decodeURIComponent(atob(Hash.get('data').split('#')[0].split('%3D').join('')))));
-
-		//console.log(this.data);
 
 		this.state = { loading: true, success: false, ticket: false };
 
