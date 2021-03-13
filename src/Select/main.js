@@ -302,7 +302,9 @@ export default class main extends React.Component {
 	append_page() {
 		let op = [];
 		for (let i = 0; i < this.nun + 2; i++) {
-			op.push(<Page ref={'page' + i} key={i} index={i} end={this.selected.bind(this)} />);
+			op.push(
+				<Page ref={'page' + i} key={i} index={i} end={this.selected.bind(this)} />
+			);
 		}
 		return op;
 	}
